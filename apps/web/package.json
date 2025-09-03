@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "preview": "vite preview",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "format": "prettier --write src --ignore-path .prettierignore",
-    "lint": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-pattern .gitignore",
-    "check": "tsc --noEmit",
-    "test": "vitest run",
-    "test-ui": "vitest --ui"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@mythmaker/ui": "workspace:*",
@@ -19,28 +18,22 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.30.0",
+    "@eslint/js": "^9.33.0",
     "@mythmaker/eslint-config": "workspace:*",
     "@mythmaker/prettier-config": "workspace:*",
     "@mythmaker/tailwind-config": "workspace:*",
     "@mythmaker/typescript-config": "workspace:*",
     "@mythmaker/vitest-config": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.5",
-    "@types/node": "^24.2.0",
-    "@types/react": "^19.1.9",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
-    "@vitest/ui": "3.2.4",
-    "autoprefixer": "^10.4.20",
-    "esbuild": "^0.25.5",
-    "eslint": "^9.30.0",
-    "postcss": "^8.5.3",
-    "prettier": "^3.5.3",
-    "tailwindcss": "^4.1.5",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "postcss": "^8.5.6",
     "typescript": "^5.8.3",
-    "vite": "^7.1.0",
-    "vite-plugin-svgr": "^4.3.0",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "vite": "^7.1.2",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }

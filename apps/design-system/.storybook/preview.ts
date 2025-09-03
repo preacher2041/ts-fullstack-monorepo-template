@@ -1,16 +1,6 @@
 import type { Preview } from '@storybook/react-vite'
-// @ts-ignore
-import CssStyleSheet from '../../web/src/style.css?inline' with {type: 'css'};
-
-const styleSheet = new CSSStyleSheet; styleSheet.replaceSync(CssStyleSheet);
 
 const preview: Preview = {
-  decorators: [
-    (Story) => {
-      document.adoptedStyleSheets = [styleSheet];
-      return Story();
-    }
-  ],
   parameters: {
     controls: {
       matchers: {
