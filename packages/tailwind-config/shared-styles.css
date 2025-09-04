@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@source '@monorepo-test/ui';
 
 @theme {
     --color-mint-500: #00bfa5;
