@@ -1,4 +1,5 @@
 @import '@mythmaker/tailwind-config';
+@source '../../../packages/ui/src';
 
 :root {
 	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
