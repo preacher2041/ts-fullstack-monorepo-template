@@ -2,11 +2,11 @@ import { Counter } from '@mythmaker/ui'
 import { createFileRoute } from '@tanstack/react-router'
 
 import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg' 
+import viteLogo from '/vite.svg'
 
 const RouteComponent = () => {
-  return (
-    <>
+	return (
+		<>
 			<div className='bg-mint-500'>
 				<a href='https://vite.dev' target='_blank' rel='noreferrer'>
 					<img src={viteLogo} className='logo' alt='Vite logo' />
@@ -30,10 +30,9 @@ const RouteComponent = () => {
 				Click on the Vite and React logos to learn more
 			</p>
 		</>
-  )
+	)
 }
 
 export const Route = createFileRoute('/')({
-  component: RouteComponent,
+	component: RouteComponent,
 })
-
