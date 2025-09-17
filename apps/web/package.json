@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@mythmaker/ui": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.13",
     "@tanstack/react-router": "^1.131.37",
+    "@tanstack/router-vite-plugin": "^1.131.38",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
