@@ -8,7 +8,7 @@
     },
     "devDependencies": {
         "@mythmaker/typescript-config": "workspace:*",
-        "@vitest/ui": "3.2.4",
-        "vitest": "^3.2.4"
+        "@vitest/ui": "4.0.16",
+        "vitest": "^4.0.16"
     }
 }

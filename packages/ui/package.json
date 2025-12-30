@@ -12,7 +12,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "clsx": "^1.2.1"
+    "clsx": "^2.1.1"
   },
   "peerDependencies": {
     "react": "^19.1.1",
@@ -23,9 +23,9 @@
     "@mythmaker/prettier-config": "workspace:*",
     "@mythmaker/tailwind-config": "workspace:*",
     "@mythmaker/typescript-config": "workspace:*",
-    "@types/react": "^19.1.9",
-    "@types/react-dom": "^19.1.7",
-    "eslint": "^9.32.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3"
   }
