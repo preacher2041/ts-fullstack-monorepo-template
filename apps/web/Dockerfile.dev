@@ -1,0 +1,27 @@
+# Development Dockerfile for web app
+FROM node:20-alpine
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Set working directory
+WORKDIR /app
+
+# Copy workspace configuration files
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
+
+# Copy all packages (needed for workspace dependencies)
+COPY packages ./packages
+
+# Copy the web app
+COPY apps/web ./apps/web
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Expose the dev server port (from vite.config.ts)
+EXPOSE 9000
+
+# Start dev server
+CMD ["pnpm", "--filter", "web", "dev", "--host", "0.0.0.0"]
+

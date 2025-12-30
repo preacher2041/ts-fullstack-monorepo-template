@@ -1,0 +1,27 @@
+# Development Dockerfile for design-system (Storybook)
+FROM node:20-alpine
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Set working directory
+WORKDIR /app
+
+# Copy workspace configuration files
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
+
+# Copy all packages (needed for workspace dependencies)
+COPY packages ./packages
+
+# Copy the design-system app
+COPY apps/design-system ./apps/design-system
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Expose Storybook port
+EXPOSE 6006
+
+# Start Storybook dev server
+CMD ["pnpm", "--filter", "design-system", "dev"]
+

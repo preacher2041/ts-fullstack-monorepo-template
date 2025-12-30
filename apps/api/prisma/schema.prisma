@@ -1,0 +1,189 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  username  String     @unique
+  email     String     @unique
+  firstName String
+  lastName  String
+  dob       String
+  password  String
+  // A user can have zero or more campaigns
+  campaigns Campaign[]
+}
+
+model Campaign {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  // A campaign must have a GM
+  gm        User     @relation(fields: [gmId], references: [id])
+  gmId      Int
+  //  A campaign can have zero or more worlds
+  worlds    World[]
+}
+
+model World {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  name        String
+  description String
+  history     String
+  // A world must have a campaign
+  campaign    Campaign   @relation(fields: [campaignId], references: [id])
+  campaignId  Int
+  // A world can have zero or more NPCs
+  npcs        Npc[]
+  // A world can have zero or more factions
+  faction     Faction[]
+  // A world can have zero or more locations
+  location    Location[]
+  // A world can have zero or more pantheons
+  pantheon    Pantheon[]
+  // A world can have zero or more deities
+  deities     Deity[]
+}
+
+model Npc {
+  id             Int           @id @default(autoincrement())
+  createdAt      DateTime      @default(now())
+  name           String
+  backstory      String
+  ideals         String
+  bonds          String
+  flaws          String
+  motivation     String
+  fear           String
+  // An NPC must have a world
+  worldId        Int
+  world          World         @relation(fields: [worldId], references: [id])
+  // An NPC can have zero or more factions
+  factions       Faction[]
+  // An NPC can lead zero or one factions
+  factionLed     Faction?      @relation("FactionLeader")
+  // An NPC can have zero locations or one
+  locationId     Int?
+  location       Location?     @relation(fields: [locationId], references: [id])
+  // An NPC can have zero or more relationships
+  relationship   Relationship? @relation(fields: [relationshipId], references: [id])
+  relationshipId Int?
+}
+
+model Relationship {
+  id                 Int              @id @default(autoincrement())
+  createdAt          DateTime         @default(now())
+  // A relationship must have a relationship type
+  relationshipTypeId Int
+  relationshipType   RelationshipType @relation(fields: [relationshipTypeId], references: [id])
+  // a relationship can have zero or more NPCs
+  npcs               Npc[]
+}
+
+model RelationshipType {
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  name         String
+  // A relationship can have zero or more relationships
+  relationship Relationship[]
+}
+
+model Faction {
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  name           String
+  history        String
+  // A faction must have a world
+  worldId        Int       @unique
+  world          World     @relation(fields: [worldId], references: [id])
+  // A faction can have zero Leaders or one
+  leaderId       Int       @unique
+  leader         Npc?      @relation("FactionLeader", fields: [leaderId], references: [id])
+  // A faction can have zero or more notable members
+  notableMembers Npc[]
+  // A faction can have zero locations or one
+  locationId     Int?
+  location       Location? @relation(fields: [locationId], references: [id])
+}
+
+model Location {
+  id            Int            @id @default(autoincrement())
+  createdAt     DateTime       @default(now())
+  name          String
+  description   String
+  history       String
+  // A location must have a world
+  worldId       Int            @unique
+  world         World          @relation(fields: [worldId], references: [id])
+  // A location can have zero or more location types
+  locationTypes LocationType[]
+  // A location can have zero parent locations or one
+  parentId      Int?
+  parent        Location?      @relation("LocationHistory", fields: [parentId], references: [id])
+  // A location can have zero or more child locations
+  child         Location[]     @relation("LocationHistory")
+  // A location can have zero or more NPCs
+  npcs          Npc[]
+  // A location can have zero or more factions
+  factions      Faction[]
+  // A location can have zero or more deities
+  deities       Deity[]
+}
+
+model LocationType {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  type       String
+  // A location type must have a location
+  locationId Int      @unique
+  location   Location @relation(fields: [locationId], references: [id])
+}
+
+model Pantheon {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  history   String
+  // A pantheon must have a world
+  worldId   Int      @unique
+  world     World    @relation(fields: [worldId], references: [id])
+  // A pantheon can have zero or more deities
+  deity     Deity[]
+}
+
+model Deity {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  name        String
+  history     String
+  // A deity must have a world
+  worldId     Int        @unique
+  world       World      @relation(fields: [worldId], references: [id])
+  // A deity must have a pantheon
+  pantheonId  Int        @unique
+  pantheon    Pantheon   @relation(fields: [pantheonId], references: [id])
+  // A deity can have zero locations or one
+  locationId  Int?
+  location    Location?  @relation(fields: [locationId], references: [id])
+  // A deity can have one alignment or none
+  alignmentId Int?
+  alignment   Alignment? @relation(fields: [alignmentId], references: [id])
+}
+
+model Alignment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  // Alignment can have zero or more deities
+  deities   Deity[]
+}
