@@ -1,14 +1,11 @@
-import * as React from 'react'
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-
-const RootComponent = () => {
-	return (
-		<React.Fragment>
-			<Outlet />
-		</React.Fragment>
-	)
-}
+import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { MainNav } from '@/components'
 
 export const Route = createRootRoute({
-	component: RootComponent,
+	component: () => (
+		<>
+			<MainNav />
+			<Outlet />
+		</>
+	),
 })
