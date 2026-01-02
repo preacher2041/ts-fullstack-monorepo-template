@@ -1,10 +1,7 @@
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import createError from 'http-errors';
 
-import 'dotenv/config';
-
-const prisma = new PrismaClient();
+import prisma from '../lib/db';
 
 export const createUser = async (data: any) => {
 	data.password = bcrypt.hashSync(data.password, 8);
