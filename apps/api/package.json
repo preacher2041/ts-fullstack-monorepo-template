@@ -12,7 +12,7 @@
     "studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "^5.10.2",
+    "@prisma/client": "^6.19.1",
     "@types/body-parser": "^1.19.6",
     "@types/http-errors": "^2.0.5",
     "bcryptjs": "^3.0.3",
@@ -42,7 +42,7 @@
     "@types/swagger-ui-express": "^4.1.8",
     "@types/uuid": "^11.0.0",
     "nodemon": "^3.1.11",
-    "prisma": "^5.10.2",
+    "prisma": "^6.19.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
