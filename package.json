@@ -9,8 +9,7 @@
   "license": "ISC",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky",
-    "update:minor": "./scripts/update-minor-packages.sh"
+    "prepare": "husky"
   },
   "devDependencies": {
     "husky": "^9.1.7",
