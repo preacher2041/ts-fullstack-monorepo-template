@@ -9,6 +9,6 @@ const RootComponent = () => {
 	)
 }
 
-export const Root = createRootRoute({
+export const Route = createRootRoute({
 	component: RootComponent,
 })
