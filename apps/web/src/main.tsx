@@ -1,13 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.js'
+import ReactDOM from 'react-dom/client'
 
-import './styles.css'
-const rootElement = document.getElementById('root')
-if (rootElement) {
-	createRoot(rootElement).render(
-		<StrictMode>
-			<App />
-		</StrictMode>
-	)
+import { AppProvider } from './providers/app'
+
+// Render the app
+const rootElement = document.getElementById('root')!
+if (!rootElement.innerHTML) {
+	const root = ReactDOM.createRoot(rootElement)
+	root.render(<AppProvider />)
 }
