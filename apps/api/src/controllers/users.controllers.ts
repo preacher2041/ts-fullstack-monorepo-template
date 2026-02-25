@@ -1,4 +1,4 @@
-import createError from 'http-errors';
+import createError, { isHttpError } from 'http-errors';
 import { NextFunction, Request, Response } from 'express';
 
 import { createUser, deleteUser, fetchUser, updateUser, updateUserPassword } from '../services/users.services';
@@ -14,12 +14,12 @@ export const createUserController = async (req: Request, res: Response, next: Ne
 			data: user
 		})
 	}
-	catch (e: any) {
-		next(createError(e.statusCode, e.message));
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500));
 	}
 }
 
-export const fetchUserController = async (req: any, res: Response, next: NextFunction) => {
+export const fetchUserController = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const user = await fetchUser(req);
 		res.status(200).json({
@@ -28,8 +28,8 @@ export const fetchUserController = async (req: any, res: Response, next: NextFun
 			user
 		})
 	}
-	catch (e: any) {
-		next(createError(e.statusCode, e.message))
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500))
 	}
 }
 
@@ -41,8 +41,8 @@ export const deleteUserController = async (req: Request, res: Response, next: Ne
 			message: 'User deleted successfully',
 		})
 	}
-	catch (e: any) {
-		next(createError(e.statusCode, e.message));
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500));
 	}
 }
 
@@ -55,8 +55,8 @@ export const updateUserController = async (req: Request, res: Response, next: Ne
 			data: user
 		})
 	}
-	catch (e: any) {
-		next(createError(e.statusCode, e.message));
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500));
 	}
 }
 
@@ -69,7 +69,7 @@ export const updateUserPasswordController = async (req: Request, res: Response, 
 			data: user
 		})
 	}
-	catch (e: any) {
-		next(createError(e.statusCode, e.message));
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500));
 	}
 }

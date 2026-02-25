@@ -1,4 +1,4 @@
-import createError from 'http-errors';
+import createError, { isHttpError } from 'http-errors';
 import { NextFunction, Request, Response } from 'express';
 
 import { loginUser } from '../services/auth.services';
@@ -13,8 +13,8 @@ export const getCurrentSessionController = async (req: Request, res: Response, n
 		})
 	}
 
-	catch (e: any) {
-		next(createError(e.statusCode, e.message))
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500))
 	}
 } 
 
@@ -29,8 +29,8 @@ export const loginUserController = async (req: Request, res: Response, next: Nex
 			userId: data.id
 		})
 	}
-	catch (e: any) {
-		next(createError(e.statusCode, e.message))
+	catch (e: unknown) {
+		next(isHttpError(e) ? e : createError(500))
 	}
 }
 
