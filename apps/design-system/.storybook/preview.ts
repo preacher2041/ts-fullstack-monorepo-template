@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/react-vite'
 // @ts-ignore
 import CssStyleSheet from '../stories/styles.css?inline' with {type: 'css'};
 
-const styleSheet = new CSSStyleSheet; styleSheet.replaceSync(CssStyleSheet);
+const styleSheet = new CSSStyleSheet(); styleSheet.replaceSync(CssStyleSheet);
 
 const preview: Preview = {
   decorators: [
