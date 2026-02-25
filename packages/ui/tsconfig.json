@@ -1,5 +1,5 @@
 {
   "extends": "@mythmaker/typescript-config/base.json",
-  "include": [".", "eslint.config.js"],
+  "include": ["."],
   "exclude": ["node_modules"]
 }
