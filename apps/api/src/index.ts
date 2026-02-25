@@ -26,13 +26,18 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(morgan('tiny'))
+const sessionSecret = process.env['ACCESS_TOKEN_SECRET'];
+if (!sessionSecret) {
+	throw new Error('ACCESS_TOKEN_SECRET environment variable is not set');
+}
+
 app.use(session({
 	name: 'MySessionID',
 	cookie: {
 		httpOnly: true,
-		domain: 'localhost'
+		domain: process.env['COOKIE_DOMAIN'] || 'localhost'
 	},
-	secret: process.env['ACCESS_TOKEN_SECRET'] || '',
+	secret: sessionSecret,
 	resave: true,
 	saveUninitialized: true,
 }));
