@@ -1,0 +1,8 @@
+{
+  "extends": "@mythmaker/typescript-config/vite.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler"
+  },
+  "include": ["stories", ".storybook"],
+  "exclude": ["node_modules"]
+}
