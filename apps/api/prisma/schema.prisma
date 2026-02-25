@@ -103,7 +103,7 @@ model Faction {
   name           String
   history        String
   // A faction must have a world
-  worldId        Int       @unique
+  worldId        Int
   world          World     @relation(fields: [worldId], references: [id])
   // A faction can have zero Leaders or one
   leaderId       Int       @unique
@@ -122,7 +122,7 @@ model Location {
   description   String
   history       String
   // A location must have a world
-  worldId       Int            @unique
+  worldId       Int
   world         World          @relation(fields: [worldId], references: [id])
   // A location can have zero or more location types
   locationTypes LocationType[]
@@ -144,7 +144,7 @@ model LocationType {
   createdAt  DateTime @default(now())
   type       String
   // A location type must have a location
-  locationId Int      @unique
+  locationId Int
   location   Location @relation(fields: [locationId], references: [id])
 }
 
@@ -154,7 +154,7 @@ model Pantheon {
   name      String
   history   String
   // A pantheon must have a world
-  worldId   Int      @unique
+  worldId   Int
   world     World    @relation(fields: [worldId], references: [id])
   // A pantheon can have zero or more deities
   deity     Deity[]
@@ -166,10 +166,10 @@ model Deity {
   name        String
   history     String
   // A deity must have a world
-  worldId     Int        @unique
+  worldId     Int
   world       World      @relation(fields: [worldId], references: [id])
   // A deity must have a pantheon
-  pantheonId  Int        @unique
+  pantheonId  Int
   pantheon    Pantheon   @relation(fields: [pantheonId], references: [id])
   // A deity can have zero locations or one
   locationId  Int?
