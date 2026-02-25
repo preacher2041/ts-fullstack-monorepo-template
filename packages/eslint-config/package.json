@@ -9,7 +9,8 @@
   "license": "ISC",
   "type": "module",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./node": "./node.js"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^8.51.0",
