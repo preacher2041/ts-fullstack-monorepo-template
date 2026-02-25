@@ -20,7 +20,7 @@ export const config = [
     ...tseslint.configs.recommended, // TypeScript-ESLint's recommended rules
     pluginReact.configs.react.recommended, // React plugin's recommended rules
     {
-        files: ['**/*.{js, jsx, ts, tsx}'],
+        files: ['**/*.{js,jsx,ts,tsx}'],
         languageOptions: {
             globals: {
                 ...globals.browser,
@@ -68,7 +68,7 @@ export const config = [
                 },
             ],
             '@typescript-eslint/no-explicit-any': 'warn', // Warn about explicit 'any' types
-            '@typescript-eslint/ban-ts-comment': 'wanr', // Warn about 'ts-ignore' comments
+            '@typescript-eslint/ban-ts-comment': 'warn', // Warn about 'ts-ignore' comments
             'react/jsx-uses-react': 'off', // Not needed with React 17+
             'react/react-in-jsx-scope': 'off', // Not needed with React 17+
             'react/prop-types': 'off', // Disable prop-types in TypeScript projects
