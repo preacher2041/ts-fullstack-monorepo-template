@@ -1,7 +1,7 @@
 {
-    "extends": ["@mythmaker/typescript-config/base.json"],
+    "extends": "@mythmaker/typescript-config/base.json",
     "compilerOptions": {
-        "outDir": "dist",
+        "outDir": "dist"
     },
     "include": ["configs", "scripts"],
     "exclude": ["node_modules", "dist"]

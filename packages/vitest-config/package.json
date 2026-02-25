@@ -4,7 +4,8 @@
     "description": "Vitest configuration for Mythmaker projects",
     "type": "module",
     "exports": {
-        "./base": "./configs/base-config.ts"
+        "./base": "./configs/base-config.ts",
+        "./ui": "./configs/ui-configs.ts"
     },
     "devDependencies": {
         "@mythmaker/typescript-config": "workspace:*",
