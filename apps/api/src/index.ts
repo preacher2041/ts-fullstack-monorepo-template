@@ -10,7 +10,7 @@ import router from './routes';
 
 declare module 'express-session' {
 	export interface SessionData {
-	  user: { [key: string]: any };
+	  user: { id: number; username: string; email: string };
 	}
   }
 
