@@ -1,5 +1,5 @@
 import {  NextFunction, Request, Response, Router } from 'express'
-import createError from 'http-errors'
+import createError, { isHttpError } from 'http-errors'
 
 import auth from './auth'
 import campaigns from './campaigns'
@@ -25,11 +25,10 @@ router.use( async (_req, _res, next) => {
     next(createError.NotFound('Route not Found'))
 })
 
-router.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-	res.status(err.status || 500).json({
-		status: err.status || 500,
-		message: err.message
-	})
+router.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+	const status = isHttpError(err) ? err.status : 500;
+	const message = err instanceof Error ? err.message : 'Internal Server Error';
+	res.status(status).json({ status, message });
 })
 
 export default router
