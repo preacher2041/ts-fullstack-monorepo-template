@@ -22,16 +22,6 @@ RUN pnpm install --frozen-lockfile
 # Generate Prisma client
 RUN pnpm --filter @mythmaker/api generate
 
-# Development stage
-FROM base AS development
-
-WORKDIR /app
-
-EXPOSE 3000
-
-# Start dev server with nodemon
-CMD ["pnpm", "--filter", "@mythmaker/api", "dev"]
-
 # Production stage
 FROM base AS production
 
@@ -43,4 +33,4 @@ RUN pnpm --filter @mythmaker/api build
 EXPOSE 3000
 
 # Start production server
-CMD ["node", "apps/api/dist/index.js"]
+CMD ["node", "apps/api/dist/src/index.js"]

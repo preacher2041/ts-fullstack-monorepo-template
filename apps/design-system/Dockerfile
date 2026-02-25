@@ -33,6 +33,9 @@ FROM nginx:alpine AS production
 # Copy built Storybook from builder
 COPY --from=builder /app/apps/design-system/storybook-static /usr/share/nginx/html
 
+# Copy nginx configuration
+COPY apps/design-system/nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80
 EXPOSE 80
 
