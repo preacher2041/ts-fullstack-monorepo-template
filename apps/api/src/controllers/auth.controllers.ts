@@ -34,10 +34,13 @@ export const loginUserController = async (req: Request, res: Response, next: Nex
 	}
 }
 
-export const logoutUserController = (_req: Request, res: Response) => {
-	res.clearCookie('MySessionID')
-	res.status(200).json({
-		status: 200,
-		message: 'Account logout successful',
-	})
+export const logoutUserController = (req: Request, res: Response, next: NextFunction) => {
+	req.session.destroy((err) => {
+		if (err) return next(err);
+		res.clearCookie('MySessionID');
+		res.status(200).json({
+			status: 200,
+			message: 'Account logout successful',
+		});
+	});
 }

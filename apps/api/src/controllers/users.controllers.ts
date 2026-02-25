@@ -24,12 +24,12 @@ export const fetchUserController = async (req: any, res: Response, next: NextFun
 		const user = await fetchUser(req);
 		res.status(200).json({
 			status: 200,
-			message: 'User profile fetched succesfully',
+			message: 'User profile fetched successfully',
 			user
 		})
 	}
 	catch (e: any) {
-		next(createError(e.statuscode, e.message))
+		next(createError(e.statusCode, e.message))
 	}
 }
 
@@ -38,7 +38,7 @@ export const deleteUserController = async (req: Request, res: Response, next: Ne
 		await deleteUser(req);
 		res.status(200).json({
 			status: 200,
-			message: 'User deleted succesfully',
+			message: 'User deleted successfully',
 		})
 	}
 	catch (e: any) {
@@ -51,7 +51,7 @@ export const updateUserController = async (req: Request, res: Response, next: Ne
 		const user = await updateUser(req);
 		res.status(200).json({
 			status: 200,
-			message: 'User updated succesfully',
+			message: 'User updated successfully',
 			data: user
 		})
 	}
@@ -65,7 +65,7 @@ export const updateUserPasswordController = async (req: Request, res: Response, 
 		const user = await updateUserPassword(req);
 		res.status(200).json({
 			status: 200,
-			message: 'User updated succesfully',
+			message: 'User updated successfully',
 			data: user
 		})
 	}
