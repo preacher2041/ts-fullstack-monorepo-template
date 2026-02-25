@@ -1,9 +1,11 @@
+import { Request } from 'express';
 import bcrypt from 'bcryptjs';
 import createError from 'http-errors';
+import { Prisma } from '@prisma/client';
 
 import prisma from '../lib/db';
 
-export const createUser = async (data: any) => {
+export const createUser = async (data: Prisma.UserCreateInput) => {
 	data.password = bcrypt.hashSync(data.password, 8);
 	const user = await prisma.user.create({
 		data
@@ -12,8 +14,8 @@ export const createUser = async (data: any) => {
 	return user;
 }
 
-export const fetchUser = async (req: any) => {
-	const userId = parseInt(req.session.user.id);
+export const fetchUser = async (req: Request) => {
+	const userId = req.session.user!.id;
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId
@@ -33,7 +35,7 @@ export const fetchUser = async (req: any) => {
 	};
 }
 
-export const updateUser = async (req: any) => {
+export const updateUser = async (req: Request) => {
 	const userId = parseInt(req.params.id);
 	const user = await prisma.user.update({
 		where: {
@@ -58,10 +60,10 @@ export const updateUser = async (req: any) => {
 		firstName: user.firstName,
 		lastName: user.lastName,
 		dob: user.dob,
-	};;
+	};
 }
 
-export const updateUserPassword = async (req: any) => {
+export const updateUserPassword = async (req: Request) => {
 	const {current_password, new_password} = req.body;
 	const userId = parseInt(req.params.id);
 	const user = await prisma.user.findUnique({
@@ -75,7 +77,7 @@ export const updateUserPassword = async (req: any) => {
 	}
 
 	const checkPassword = bcrypt.compareSync(current_password, user.password);
-	
+
 	if (!checkPassword) {
 		throw createError.Unauthorized('Passwords do not match');
 	} else {
@@ -91,7 +93,7 @@ export const updateUserPassword = async (req: any) => {
 	}
 }
 
-export const deleteUser = async (req: any) => {
+export const deleteUser = async (req: Request) => {
 	const userId = parseInt(req.params.id);
 	const user = await prisma.user.delete({
 		where: {

@@ -3,7 +3,7 @@ import createError from 'http-errors';
 
 import prisma from '../lib/db';
 
-export const loginUser = async (data: any) => {
+export const loginUser = async (data: { email: string; password: string }) => {
 	const {email, password} = data;
 	const user = await prisma.user.findUnique({
 		where: {
