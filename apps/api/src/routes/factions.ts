@@ -15,7 +15,7 @@ router.get('/', async (_req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
+	const {id}: {id?:string} = req.params
 	const faction = await prisma.faction.findUnique({
 		where: {id:Number(id)},
 		include: {

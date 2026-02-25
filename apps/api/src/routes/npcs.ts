@@ -25,7 +25,7 @@ router.get('/relationships', async (_req, res) => {
 })
 
 router.get('/relationships/:id', async (req, res) => {
-	const {id}: {id:String} = req.params
+	const {id}: {id:string} = req.params
 	const relationship = await prisma.relationship.findUnique({
 		where: {id:Number(id)},
 		include: {
@@ -50,7 +50,7 @@ router.get('/relationship-types', async (_req, res) => {
 })
 
 router.get('/relationship-type/:id', async (req, res) => {
-	const {id}: {id?: String} = req.params
+	const {id}: {id?: string} = req.params
 	const relationshipType = await prisma.relationshipType.findUnique({
 		where: {id:Number(id)},
 		include: {
@@ -65,7 +65,7 @@ router.get('/relationship-type/:id', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
+	const {id}: {id?:string} = req.params
 	const npc = await prisma.npc.findUnique({
 		where: {id:Number(id)},
 		include: {

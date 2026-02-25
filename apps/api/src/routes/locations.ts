@@ -18,7 +18,7 @@ router.get('/', async (_req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
+	const {id}: {id?:string} = req.params
 	const location = await prisma.location.findUnique({
 		where: {id:Number(id)},
 		include: {
@@ -43,7 +43,7 @@ router.get('/types', async (_req, res) => {
 })
 
 router.get('/types/:id', async (req, res) => {
-	const {id}: {id: String} = req.params
+	const {id}: {id: string} = req.params
 	const locationType = await prisma.locationType.findUnique({
 		where: {id:Number(id)},
 		include: {

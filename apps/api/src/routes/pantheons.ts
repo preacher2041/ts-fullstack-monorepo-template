@@ -13,7 +13,7 @@ router.get('/', async (_req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
+	const {id}: {id?:string} = req.params
 	const pantheon = await prisma.pantheon.findUnique({
 		where: {id:Number(id)},
 		include: {
@@ -34,7 +34,7 @@ router.get('/deities', async (_req, res) => {
 })
 
 router.get('/deities/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
+	const {id}: {id?:string} = req.params
 	const deity = await prisma.deity.findUnique({
 		where: {id:Number(id)},
 		include: {
@@ -56,7 +56,7 @@ router.get('/alignments', async (_req, res) => {
 })
 
 router.get('/alignments/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
+	const {id}: {id?:string} = req.params
 	const alignment = await prisma.alignment.findUnique({
 		where: {id:Number(id)},
 		include: {
