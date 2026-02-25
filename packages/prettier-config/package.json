@@ -7,5 +7,8 @@
         "email": "lee.hitchcock2041@gmail.com" 
     },
     "license": "ISC",
-    "main": "index.js"
+    "main": "index.js",
+    "exports": {
+        ".": "./index.js"
+    }
 }
