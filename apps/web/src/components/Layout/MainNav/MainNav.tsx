@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { ButtonContainer as Button } from '@/components'
+import { ButtonContainer as Button } from '@mythmaker/ui'
 
 export const MainNav = () => {
 	return (
