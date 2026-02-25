@@ -10,7 +10,7 @@ import pantheons from './pantheons'
 import users from './users'
 import worlds from './worlds'
 
-const router = Router()
+const router: Router = Router()
 
 router.use('/auth', auth);
 router.use('/campaign', campaigns)

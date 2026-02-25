@@ -4,7 +4,7 @@ import { getCurrentSessionController, loginUserController, logoutUserController 
 
 import { addAuthMiddleware } from '../middleware/auth';
 
-const router = express.Router();
+const router: express.Router = express.Router();
 
 router.post('/login', loginUserController);
 router.post('/logout', logoutUserController);

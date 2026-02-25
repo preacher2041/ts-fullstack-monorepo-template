@@ -1,7 +1,7 @@
 import express from 'express';
 
 import prisma from '../lib/db';
-const router = express.Router();
+const router: express.Router = express.Router();
 
 router.get('/', async (_req, res) => {
 	const npcs = await prisma.npc.findMany({

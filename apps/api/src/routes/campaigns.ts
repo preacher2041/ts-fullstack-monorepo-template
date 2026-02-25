@@ -2,7 +2,7 @@ import express from 'express';
 
 import { addAuthMiddleware } from '../middleware/auth';
 import prisma from '../lib/db';
-const router = express.Router();
+const router: express.Router = express.Router();
 
 router.get('/', addAuthMiddleware, async (req, res) => {
 	const userId = req.user && req.user.userId
