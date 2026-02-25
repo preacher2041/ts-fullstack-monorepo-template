@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@source '@monorepo-test/ui';
+@source '@mythmaker/ui';
 
 @theme {
     --color-mint-500: #00bfa5;
