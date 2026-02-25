@@ -14,20 +14,6 @@ router.get('/', async (_req, res) => {
 	res.json(npcs)
 })
 
-router.get('/:id', async (req, res) => {
-	const {id}: {id?:String} = req.params
-	const npc = await prisma.npc.findUnique({
-		where: {id:Number(id)},
-		include: {
-			factionLed: true,
-			factions: true,
-			location: true,
-			relationship: true
-		}
-	})
-	res.json(npc)
-})
-
 router.get('/relationships', async (_req, res) => {
 	const relationships = await prisma.relationship.findMany({
 		include: {
@@ -76,6 +62,20 @@ router.get('/relationship-type/:id', async (req, res) => {
 		}
 	})
 	res.json(relationshipType)
+})
+
+router.get('/:id', async (req, res) => {
+	const {id}: {id?:String} = req.params
+	const npc = await prisma.npc.findUnique({
+		where: {id:Number(id)},
+		include: {
+			factionLed: true,
+			factions: true,
+			location: true,
+			relationship: true
+		}
+	})
+	res.json(npc)
 })
 
 export default router;

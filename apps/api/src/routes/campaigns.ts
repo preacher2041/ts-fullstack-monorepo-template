@@ -5,7 +5,7 @@ import prisma from '../lib/db';
 const router: express.Router = express.Router();
 
 router.get('/', addAuthMiddleware, async (req, res) => {
-	const userId = req.user && req.user.userId
+	const userId = req.session.user?.id
 	const campaigns = await prisma.campaign.findMany({
 		where: {gmId:Number(userId)},
 		include: {
