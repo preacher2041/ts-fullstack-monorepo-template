@@ -1,4 +1,3 @@
-import createError, { isHttpError } from 'http-errors';
 import { NextFunction, Request, Response } from 'express';
 
 import { loginUser } from '../services/auth.services';
@@ -7,16 +6,16 @@ export const getCurrentSessionController = async (req: Request, res: Response, n
 	try {
 		const data = req.session.user;
 		const authenticated = data ? true : false;
-		
+
 		res.status(200).json({
 			authenticated
 		})
 	}
 
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500))
+		next(e);
 	}
-} 
+}
 
 export const loginUserController = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -30,7 +29,7 @@ export const loginUserController = async (req: Request, res: Response, next: Nex
 		})
 	}
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500))
+		next(e);
 	}
 }
 

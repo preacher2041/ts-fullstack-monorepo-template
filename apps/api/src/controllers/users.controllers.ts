@@ -1,4 +1,3 @@
-import createError, { isHttpError } from 'http-errors';
 import { NextFunction, Request, Response } from 'express';
 
 import { createUser, deleteUser, fetchUser, updateUser, updateUserPassword } from '../services/users.services';
@@ -15,7 +14,7 @@ export const createUserController = async (req: Request, res: Response, next: Ne
 		})
 	}
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500));
+		next(e);
 	}
 }
 
@@ -29,7 +28,7 @@ export const fetchUserController = async (req: Request, res: Response, next: Nex
 		})
 	}
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500))
+		next(e);
 	}
 }
 
@@ -42,7 +41,7 @@ export const deleteUserController = async (req: Request, res: Response, next: Ne
 		})
 	}
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500));
+		next(e);
 	}
 }
 
@@ -56,7 +55,7 @@ export const updateUserController = async (req: Request, res: Response, next: Ne
 		})
 	}
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500));
+		next(e);
 	}
 }
 
@@ -70,6 +69,6 @@ export const updateUserPasswordController = async (req: Request, res: Response, 
 		})
 	}
 	catch (e: unknown) {
-		next(isHttpError(e) ? e : createError(500));
+		next(e);
 	}
 }
