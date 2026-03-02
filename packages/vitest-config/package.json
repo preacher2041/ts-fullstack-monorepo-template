@@ -1,14 +1,14 @@
 {
-    "name": "@mythmaker/vitest-config",
+    "name": "@template/vitest-config",
     "version": "1.0.0",
-    "description": "Vitest configuration for Mythmaker projects",
+    "description": "Vitest configuration",
     "type": "module",
     "exports": {
         "./base": "./configs/base-config.ts",
         "./ui": "./configs/ui-configs.ts"
     },
     "devDependencies": {
-        "@mythmaker/typescript-config": "workspace:*",
+        "@template/typescript-config": "workspace:*",
         "@vitest/ui": "4.0.16",
         "vitest": "^4.0.16"
     }

@@ -1,7 +1,7 @@
 {
-    "name": "@mythmaker/tailwind-config",
+    "name": "@template/tailwind-config",
     "version": "1.0.0",
-    "description": "Tailwind CSS configuration for Mythmaker",
+    "description": "Tailwind CSS configuration",
     "type": "module",
     "author": {
         "name": "Lee Hitchcock",
@@ -13,7 +13,7 @@
         "./postcss": "./postcss.config.js"
     },
     "devDependencies": {
-        "@mythmaker/typescript-config": "workspace:*",
+        "@template/typescript-config": "workspace:*",
         "postcss": "^8.5.6",
         "tailwindcss": "^4.1.18"
     }

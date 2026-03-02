@@ -1,3 +1,3 @@
-import {postcssConfig} from '@mythmaker/tailwind-config/postcss';
+import {postcssConfig} from '@template/tailwind-config/postcss';
 
 export default postcssConfig;

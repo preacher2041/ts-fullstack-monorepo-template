@@ -1,6 +1,6 @@
-@import '@mythmaker/tailwind-config';
-@import '@mythmaker/ui/styles';
+@import '@template/tailwind-config';
+@import '@template/ui/styles';
 
 @theme {
-    
+
 }

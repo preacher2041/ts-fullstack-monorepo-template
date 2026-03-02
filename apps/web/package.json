@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@template/web",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@mythmaker/ui": "workspace:*",
+    "@template/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
     "@tanstack/react-router": "^1.144.0",
     "@tanstack/router-vite-plugin": "^1.145.2",
@@ -26,11 +26,11 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
-    "@mythmaker/eslint-config": "workspace:*",
-    "@mythmaker/prettier-config": "workspace:*",
-    "@mythmaker/tailwind-config": "workspace:*",
-    "@mythmaker/typescript-config": "workspace:*",
-    "@mythmaker/vitest-config": "workspace:*",
+    "@template/eslint-config": "workspace:*",
+    "@template/prettier-config": "workspace:*",
+    "@template/tailwind-config": "workspace:*",
+    "@template/typescript-config": "workspace:*",
+    "@template/vitest-config": "workspace:*",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",

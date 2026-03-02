@@ -1,4 +1,4 @@
-import { config } from '@mythmaker/eslint-config/node';
+import { config } from '@template/eslint-config/node';
 
 /** @type {import('eslint').Linter.Config} */
 export default [

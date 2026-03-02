@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from '@storybook/react-vite';
 
-import {Header} from '@mythmaker/ui';
+import {Header} from '@template/ui';
 
 const meta: Meta<typeof Header> = {
   title: 'Components/Header',
@@ -16,6 +16,6 @@ export default meta;
 
 export const Default: StoryObj<typeof Header> = {
     args: {
-      title: 'Mythmaker',
+      title: 'Template',
     }
 }

@@ -20,7 +20,7 @@ COPY apps/api ./apps/api
 RUN pnpm install --frozen-lockfile
 
 # Generate Prisma client
-RUN pnpm --filter @mythmaker/api generate
+RUN pnpm --filter @template/api generate
 
 # Production stage
 FROM base AS production
@@ -28,7 +28,7 @@ FROM base AS production
 WORKDIR /app
 
 # Build TypeScript
-RUN pnpm --filter @mythmaker/api build
+RUN pnpm --filter @template/api build
 
 EXPOSE 3000
 

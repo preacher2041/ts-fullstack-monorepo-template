@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import '@mythmaker/ui/styles';
+@import '@template/ui/styles';
 
 @plugin "tailwindcss-animate";
 

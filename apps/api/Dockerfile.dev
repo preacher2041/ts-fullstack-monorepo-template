@@ -20,11 +20,11 @@ COPY apps/api ./apps/api
 RUN pnpm install --frozen-lockfile
 
 # Generate Prisma client
-RUN pnpm --filter @mythmaker/api generate
+RUN pnpm --filter @template/api generate
 
 # Expose the API port
 EXPOSE 3000
 
 # Start dev server with nodemon
-CMD ["pnpm", "--filter", "@mythmaker/api", "dev"]
+CMD ["pnpm", "--filter", "@template/api", "dev"]
 

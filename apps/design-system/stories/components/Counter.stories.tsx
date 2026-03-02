@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from '@storybook/react-vite';
 
-import {Counter} from '@mythmaker/ui';
+import {Counter} from '@template/ui';
 
 const meta: Meta<typeof Counter> = {
   title: 'Components/Counter',

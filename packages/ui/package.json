@@ -1,7 +1,7 @@
 {
-  "name": "@mythmaker/ui",
+  "name": "@template/ui",
   "version": "1.0.0",
-  "description": "A UI library for Mythmaker application",
+  "description": "A shared UI library",
   "author": {
     "name": "Lee Hitchcock",
     "email": "lee.hitchcock2041@gmail.com"
@@ -17,10 +17,10 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@mythmaker/eslint-config": "workspace:*",
-    "@mythmaker/prettier-config": "workspace:*",
-    "@mythmaker/tailwind-config": "workspace:*",
-    "@mythmaker/typescript-config": "workspace:*",
+    "@template/eslint-config": "workspace:*",
+    "@template/prettier-config": "workspace:*",
+    "@template/tailwind-config": "workspace:*",
+    "@template/typescript-config": "workspace:*",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.2",

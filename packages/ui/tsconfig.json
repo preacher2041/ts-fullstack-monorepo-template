@@ -1,5 +1,5 @@
 {
-  "extends": "@mythmaker/typescript-config/base.json",
+  "extends": "@template/typescript-config/base.json",
   "include": ["."],
   "exclude": ["node_modules"]
 }
