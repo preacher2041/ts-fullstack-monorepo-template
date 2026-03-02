@@ -7,6 +7,9 @@ import prisma from '../lib/db';
 
 export const createUser = async (data: Prisma.UserCreateInput) => {
 	data.password = bcrypt.hashSync(data.password, 8);
+	if (data.dob) {
+		data.dob = new Date(data.dob as string);
+	}
 	const user = await prisma.user.create({
 		data
 	})
@@ -46,7 +49,7 @@ export const updateUser = async (req: Request) => {
 			email: req.body.email,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
-			dob: req.body.dob
+			dob: req.body.dob ? new Date(req.body.dob) : undefined,
 		}
 	});
 
