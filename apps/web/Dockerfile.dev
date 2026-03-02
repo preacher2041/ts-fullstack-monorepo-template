@@ -23,5 +23,5 @@ RUN pnpm install --frozen-lockfile
 EXPOSE 9000
 
 # Start dev server
-CMD ["pnpm", "--filter", "web", "dev", "--host", "0.0.0.0"]
+CMD ["pnpm", "--filter", "@template/web", "dev", "--host", "0.0.0.0"]
 

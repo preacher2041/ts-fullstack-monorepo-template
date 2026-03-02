@@ -23,5 +23,5 @@ RUN pnpm install --frozen-lockfile
 EXPOSE 6006
 
 # Start Storybook dev server
-CMD ["pnpm", "--filter", "design-system", "dev"]
+CMD ["pnpm", "--filter", "@template/design-system", "dev"]
 
