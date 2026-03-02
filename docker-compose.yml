@@ -1,14 +1,4 @@
 services:
-  web:
-    build:
-      context: .
-      dockerfile: apps/web/Dockerfile
-    ports:
-      - "8080:80"
-    restart: unless-stopped
-    environment:
-      - NODE_ENV=production
-
   web-dev:
     build:
       context: .
@@ -23,16 +13,6 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=development
-
-  design-system:
-    build:
-      context: .
-      dockerfile: apps/design-system/Dockerfile
-    ports:
-      - "8081:80"
-    restart: unless-stopped
-    environment:
-      - NODE_ENV=production
 
   design-system-dev:
     build:
@@ -68,24 +48,6 @@ services:
       timeout: 2s
       retries: 20
 
-  # API Production
-  api:
-    build:
-      context: .
-      dockerfile: apps/api/Dockerfile
-      target: production
-    ports:
-      - "${API_PORT:-3000}:3000"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    env_file:
-      - apps/api/.env
-    restart: unless-stopped
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgresql://${DATABASE_USER:-postgres}:${DATABASE_PASSWORD:-postgres}@postgres:5432/${DATABASE_NAME:-template}
-
   # API Development
   api-dev:
     build:
@@ -110,9 +72,10 @@ services:
 
   # Prisma Studio
   prisma-studio:
-    image: node:20-alpine
-    working_dir: /app
-    command: sh -c "cd apps/api && npx prisma studio --port 5555 --browser none --url $$DATABASE_URL"
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile.dev
+    command: pnpm --filter @template/api studio
     ports:
       - "${PRISMA_PORT:-5555}:5555"
     volumes:
