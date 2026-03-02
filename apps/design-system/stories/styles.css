@@ -1,2 +1,6 @@
 @import '@mythmaker/tailwind-config';
-@source '../../../packages/ui/src';
+@import '@mythmaker/ui/styles';
+
+@theme {
+    
+}
