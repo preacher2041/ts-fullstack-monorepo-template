@@ -1,79 +1,135 @@
-# Mythmaker Monorepo
+# Monorepo Template
 
-A monorepo for Mythmaker projects using pnpm workspaces.
+A batteries-included monorepo template for fullstack TypeScript projects. Clone it, run the setup script, and start building your app.
 
-## Docker Setup
+## What's included
 
-This monorepo is fully dockerized with both production and development configurations.
+| Layer | Technology |
+|---|---|
+| API | Express 5, Prisma 7 (PostgreSQL), session auth |
+| Web | React 19, Vite, TanStack Router, Tailwind CSS v4 |
+| Design system | Storybook 10 |
+| Shared packages | UI library, ESLint config, Prettier config, Tailwind config, TypeScript config, Vitest config |
+| Infrastructure | Docker Compose (dev + prod), multi-stage Dockerfiles |
 
-### Quick Start
+## Prerequisites
 
-#### Production Builds
+- [Node.js](https://nodejs.org) ≥ 20
+- [pnpm](https://pnpm.io) ≥ 9
+- [Docker](https://docker.com) with Compose
 
-Build and run the production web app:
+## Getting started
+
+### 1. Use this template
+
+Click **Use this template** on GitHub, or clone directly:
+
 ```bash
-docker-compose up web
-# Access at http://localhost:8080
+git clone <repo-url> my-project
+cd my-project
 ```
 
-Build and run the production design system (Storybook):
+### 2. Run the setup script
+
 ```bash
-docker-compose up design-system
-# Access at http://localhost:8081
+pnpm run setup
 ```
 
-#### Development Mode
+This will prompt you for:
+- **Project name** — e.g. `my-app`
+- **Package scope** — e.g. `mycompany` (becomes `@mycompany`)
 
-Run the web app in development mode with hot reload:
+The script renames all `@template` references throughout the codebase and runs `pnpm install`.
+
+### 3. Configure environment
+
 ```bash
-docker-compose up web-dev
-# Access at http://localhost:9000
+cp apps/api/.env.sample apps/api/.env
+# Edit apps/api/.env — set DATABASE_URL, ACCESS_TOKEN_SECRET, etc.
 ```
 
-Run Storybook in development mode:
+### 4. Start the database and run migrations
+
 ```bash
-docker-compose up design-system-dev
-# Access at http://localhost:6006
+docker compose up postgres -d
+pnpm --filter @<scope>/api migrate
 ```
 
-### Building Individual Services
+### 5. Start development
 
-You can also build and run individual services:
-
-**Web App (Production):**
 ```bash
-docker build -f apps/web/Dockerfile -t mythmaker-web .
-docker run -p 8080:80 mythmaker-web
+docker compose up api-dev web-dev
 ```
 
-**Web App (Development):**
-```bash
-docker build -f apps/web/Dockerfile.dev -t mythmaker-web-dev .
-docker run -p 9000:9000 -v $(pwd):/app mythmaker-web-dev
+| Service | URL |
+|---|---|
+| Web app | http://localhost:9000 |
+| API | http://localhost:3001 |
+| Storybook | http://localhost:6006 (run `docker compose up design-system-dev`) |
+| Prisma Studio | http://localhost:5555 (run `docker compose up prisma-studio`) |
+
+## Monorepo structure
+
+```
+.
+├── apps/
+│   ├── api/               # Express API (auth + users)
+│   │   ├── prisma/        # Schema and migrations
+│   │   └── src/
+│   │       ├── controllers/
+│   │       ├── middleware/
+│   │       ├── routes/
+│   │       └── services/
+│   ├── web/               # React web app
+│   │   └── src/
+│   │       ├── components/
+│   │       ├── features/
+│   │       ├── providers/
+│   │       └── routes/
+│   └── design-system/     # Storybook
+│       └── stories/
+├── packages/
+│   ├── ui/                # Shared React component library
+│   ├── eslint-config/     # Shared ESLint config
+│   ├── prettier-config/   # Shared Prettier config
+│   ├── tailwind-config/   # Shared Tailwind config
+│   ├── typescript-config/ # Shared tsconfig presets
+│   └── vitest-config/     # Shared Vitest config
+├── scripts/
+│   └── setup.mjs          # One-time project initialisation
+└── docker-compose.yml
 ```
 
-**Design System (Production):**
+## Adding new API routes
+
+1. Create `apps/api/src/routes/your-resource.ts`
+2. Create corresponding controller and service files
+3. Mount the router in `apps/api/src/routes/index.ts`
+4. Add any new models to `apps/api/prisma/schema.prisma` and run `pnpm --filter @<scope>/api migrate`
+
+## Adding new UI components
+
+1. Create the component in `packages/ui/src/components/`
+2. Export it from `packages/ui/src/index.ts`
+3. Add a story in `apps/design-system/stories/components/`
+
+## Adding new packages
+
+1. Create a directory under `packages/`
+2. Add a `package.json` with name `@<scope>/your-package`
+3. The pnpm workspace will pick it up automatically
+
+## Production builds
+
 ```bash
-docker build -f apps/design-system/Dockerfile -t mythmaker-design-system .
-docker run -p 8081:80 mythmaker-design-system
+docker compose up web          # Web app at http://localhost:8080
+docker compose up design-system # Storybook at http://localhost:8081
+docker compose up api          # API at http://localhost:3000
 ```
 
-**Design System (Development):**
-```bash
-docker build -f apps/design-system/Dockerfile.dev -t mythmaker-design-system-dev .
-docker run -p 6006:6006 -v $(pwd):/app mythmaker-design-system-dev
-```
+## GitHub template
 
-### Docker Compose Services
+To mark this repo as a GitHub template so others can use it:
 
-- `web` - Production web app (port 8080)
-- `web-dev` - Development web app with hot reload (port 9000)
-- `design-system` - Production Storybook build (port 8081)
-- `design-system-dev` - Development Storybook (port 6006)
-
-### Notes
-
-- All Dockerfiles use multi-stage builds for optimized image sizes
-- Development containers use volume mounts for live code reloading
-- The build context is the monorepo root to properly handle pnpm workspace dependencies
-- Production builds use nginx to serve static assets 
+1. Go to **Settings** → check **Template repository**
+2. Users can then click **Use this template** to create a new repo from it
