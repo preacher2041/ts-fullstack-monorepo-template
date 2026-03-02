@@ -1,3 +1,2 @@
-export * from './Button/Button';
-export * from './Header';
-export * from './Counter';
+export * from './Header'
+export * from './Counter'

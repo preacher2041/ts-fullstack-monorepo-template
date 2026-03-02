@@ -1,16 +1,14 @@
 import { Link } from '@tanstack/react-router'
 
-import { ButtonContainer as Button } from '@mythmaker/ui'
-
 export const MainNav = () => {
 	return (
 		<>
 			<div className='p-2 flex flex-row justify-end gap-2'>
 				<Link to='/' className='[&.active]:font-bold'>
-					<Button>Home</Button>
+					Home
 				</Link>{' '}
 				<Link to='/about' className='[&.active]:font-bold'>
-					<Button>About</Button>
+					About
 				</Link>
 			</div>
 		</>

@@ -3,7 +3,6 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from '@/routeTree.gen'
-import { Theme } from '@radix-ui/themes'
 
 import '@/index.css'
 
@@ -20,9 +19,7 @@ declare module '@tanstack/react-router' {
 export const AppProvider = () => {
 	return (
 		<StrictMode>
-			<Theme>
-				<RouterProvider router={router} />
-			</Theme>
+			<RouterProvider router={router} />
 		</StrictMode>
 	)
 }
