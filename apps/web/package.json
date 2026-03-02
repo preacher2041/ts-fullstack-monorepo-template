@@ -12,10 +12,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@template/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
+    "@tanstack/react-form": "^1.28.3",
+    "@tanstack/react-query": "^5.90.21",
     "@tanstack/react-router": "^1.144.0",
     "@tanstack/router-vite-plugin": "^1.145.2",
+    "@template/ui": "workspace:*",
     "clsx": "^2.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
