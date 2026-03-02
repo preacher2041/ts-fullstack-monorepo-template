@@ -10,9 +10,9 @@ import router from './routes';
 
 declare module 'express-session' {
 	export interface SessionData {
-	  user: { id: number; username: string; email: string };
+		user: { id: string; username: string; email: string };
 	}
-  }
+}	
 
 dotenv.config()
 
