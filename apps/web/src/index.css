@@ -4,5 +4,5 @@
 @plugin "tailwindcss-animate";
 
 @theme {
-	--color-primary: var(--color-slate-500);
+	--color-primary: var(--color-blue-500);
 }
