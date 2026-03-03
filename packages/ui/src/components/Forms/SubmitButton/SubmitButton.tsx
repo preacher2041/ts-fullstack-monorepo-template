@@ -1,5 +1,5 @@
 import { Button } from '../../Button'
-import { useFormContext } from '../Form'
+import { useFormContext } from '../Form/formContexts'
 
 type SubmitButtonProps = {
 	children: string
@@ -13,11 +13,12 @@ export const SubmitButton = ({ children, isDisabled }: SubmitButtonProps) => {
 		<form.Subscribe
 			selector={(state) => ({
 				canSubmit: state.canSubmit,
+				isDefaultValue: state.isDefaultValue,
 			})}>
-			{({ canSubmit }) => (
+			{({ canSubmit, isDefaultValue }) => (
 				<Button
 					type='submit'
-					disabled={!canSubmit || isDisabled}
+					disabled={isDefaultValue || !canSubmit || isDisabled}
 					size='lg'>
 					{children}
 				</Button>
