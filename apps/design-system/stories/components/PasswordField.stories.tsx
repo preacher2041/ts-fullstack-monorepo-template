@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { PasswordField } from '@template/ui'
+import { PasswordInput } from '@template/ui'
 
-const meta: Meta<typeof PasswordField> = {
-  title: 'Forms/PasswordField',
-  component: PasswordField,
+const meta: Meta<typeof PasswordInput> = {
+  title: 'Forms/PasswordInput',
+  component: PasswordInput,
   parameters: {
     controls: { expanded: true },
   },
@@ -20,7 +20,7 @@ const meta: Meta<typeof PasswordField> = {
 }
 
 export default meta
-type Story = StoryObj<typeof PasswordField>
+type Story = StoryObj<typeof PasswordInput>
 
 export const Default: Story = {
   args: {

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { DateField } from '@template/ui'
+import { DateInput } from '@template/ui'
 
-const meta: Meta<typeof DateField> = {
-  title: 'Forms/DateField',
-  component: DateField,
+const meta: Meta<typeof DateInput> = {
+  title: 'Forms/DateInput',
+  component: DateInput,
   parameters: {
     controls: { expanded: true },
   },
@@ -20,7 +20,7 @@ const meta: Meta<typeof DateField> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DateField>
+type Story = StoryObj<typeof DateInput>
 
 export const Default: Story = {
   args: {},

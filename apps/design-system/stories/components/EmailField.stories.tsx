@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { EmailField } from '@template/ui'
+import { EmailInput } from '@template/ui'
 
-const meta: Meta<typeof EmailField> = {
-  title: 'Forms/EmailField',
-  component: EmailField,
+const meta: Meta<typeof EmailInput> = {
+  title: 'Forms/EmailInput',
+  component: EmailInput,
   parameters: {
     controls: { expanded: true },
   },
@@ -20,7 +20,7 @@ const meta: Meta<typeof EmailField> = {
 }
 
 export default meta
-type Story = StoryObj<typeof EmailField>
+type Story = StoryObj<typeof EmailInput>
 
 export const Default: Story = {
   args: {

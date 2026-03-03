@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { TextField } from '@template/ui'
+import { TextInput } from '@template/ui'
 
-const meta: Meta<typeof TextField> = {
-  title: 'Forms/TextField',
-  component: TextField,
+const meta: Meta<typeof TextInput> = {
+  title: 'Forms/TextInput',
+  component: TextInput,
   parameters: {
     controls: { expanded: true },
   },
@@ -20,7 +20,7 @@ const meta: Meta<typeof TextField> = {
 }
 
 export default meta
-type Story = StoryObj<typeof TextField>
+type Story = StoryObj<typeof TextInput>
 
 export const Default: Story = {
   args: {
