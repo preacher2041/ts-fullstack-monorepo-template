@@ -1,8 +1,12 @@
-export const Login = () => {
+import { LoginContainer } from '../components'
+
+export const LoginView = () => {
 	return (
 		<>
 			<h1 className='text-2xl font-bold'>Login</h1>
-			<p className='mt-2'>Login form goes here.</p>
+			<p className='mt-2'>
+				<LoginContainer />
+			</p>
 		</>
 	)
 }
