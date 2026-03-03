@@ -15,7 +15,7 @@ export const FieldErrors = ({ meta, name, hideErrors }: FieldErrorProps) => {
 	return (
 		<div id={`${name}-error`}>
 			{uniqueErrors.map((message, index) => (
-				<p key={index} className='mt-2'>
+				<p key={index} className='mt-2 text-destructive'>
 					{message}
 				</p>
 			))}
