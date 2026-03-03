@@ -1,13 +1,42 @@
-import * as React from 'react'
+import { FieldErrors, Label, useFieldContext } from '..'
+import { DateInput, type DateInputProps } from './DateInput'
 
-import { Input, type InputProps } from '../Input'
+export type DateFieldProps = {
+	label: string
+	labelClassName?: string
+} & Omit<DateInputProps, 'value' | 'onChange' | 'onBlur' | 'name' | 'id' | 'state'>
 
-export type DateFieldProps = InputProps
+export const DateField = ({
+	label,
+	labelClassName,
+	...inputProps
+}: DateFieldProps) => {
+	const field = useFieldContext<string>()
 
-const DateField = React.forwardRef<HTMLInputElement, DateFieldProps>(
-	(props, ref) => <Input type='date' ref={ref} {...props} />
-)
+	const hideErrors = !field.state.meta.isTouched
+	const hasErrors = field.state.meta.errors.length > 0 && !hideErrors
 
-DateField.displayName = 'DateField'
-
-export { DateField }
+	return (
+		<>
+			<Label htmlFor={field.name} className={labelClassName}>
+				{label}
+			</Label>
+			<DateInput
+				name={field.name}
+				id={field.name}
+				value={field.state.value}
+				onChange={(e) => field.handleChange(e.target.value)}
+				onBlur={field.handleBlur}
+				state={hasErrors ? 'error' : 'default'}
+				aria-invalid={hasErrors ? 'true' : 'false'}
+				aria-errormessage={hasErrors ? `${field.name}-error` : ''}
+				{...inputProps}
+			/>
+			<FieldErrors
+				name={field.name}
+				meta={field.state.meta}
+				hideErrors={hideErrors}
+			/>
+		</>
+	)
+}

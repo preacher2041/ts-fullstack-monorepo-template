@@ -1,13 +1,42 @@
-import * as React from 'react'
+import { FieldErrors, Label, useFieldContext } from '..'
+import { PasswordInput, type PasswordInputProps } from './PasswordInput'
 
-import { Input, type InputProps } from '../Input'
+export type PasswordFieldProps = {
+	label: string
+	labelClassName?: string
+} & Omit<PasswordInputProps, 'value' | 'onChange' | 'onBlur' | 'name' | 'id' | 'state'>
 
-export type PasswordFieldProps = InputProps
+export const PasswordField = ({
+	label,
+	labelClassName,
+	...inputProps
+}: PasswordFieldProps) => {
+	const field = useFieldContext<string>()
 
-const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
-	(props, ref) => <Input type='password' ref={ref} {...props} />
-)
+	const hideErrors = !field.state.meta.isTouched
+	const hasErrors = field.state.meta.errors.length > 0 && !hideErrors
 
-PasswordField.displayName = 'PasswordField'
-
-export { PasswordField }
+	return (
+		<>
+			<Label htmlFor={field.name} className={labelClassName}>
+				{label}
+			</Label>
+			<PasswordInput
+				name={field.name}
+				id={field.name}
+				value={field.state.value}
+				onChange={(e) => field.handleChange(e.target.value)}
+				onBlur={field.handleBlur}
+				state={hasErrors ? 'error' : 'default'}
+				aria-invalid={hasErrors ? 'true' : 'false'}
+				aria-errormessage={hasErrors ? `${field.name}-error` : ''}
+				{...inputProps}
+			/>
+			<FieldErrors
+				name={field.name}
+				meta={field.state.meta}
+				hideErrors={hideErrors}
+			/>
+		</>
+	)
+}
