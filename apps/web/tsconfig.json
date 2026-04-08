@@ -1,11 +1,10 @@
 {
-  "extends": "@template/typescript-config/vite.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src", "eslint.config.js"],
-  "exclude": ["node_modules", "**/*.stories.*"]
+	"extends": "@template/typescript-config/vite.json",
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": ["src", "eslint.config.js"],
+	"exclude": ["node_modules", "**/*.stories.*"]
 }
