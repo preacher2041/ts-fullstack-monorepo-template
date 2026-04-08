@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Label, TextField } from '@template/ui'
+import { Label, TextInput } from '@template/ui'
 
 const meta: Meta<typeof Label> = {
   title: 'Forms/Label',
@@ -22,7 +22,7 @@ export const WithInput: Story = {
   render: () => (
     <div className="flex flex-col gap-1.5 w-80">
       <Label htmlFor="email">Email address</Label>
-      <TextField id="email" placeholder="you@example.com" />
+      <TextInput id="email" placeholder="you@example.com" />
     </div>
   ),
 }
@@ -31,7 +31,7 @@ export const Disabled: Story = {
   render: () => (
     <div className="flex flex-col gap-1.5 w-80">
       <Label htmlFor="email-disabled">Email address</Label>
-      <TextField id="email-disabled" placeholder="you@example.com" disabled />
+      <TextInput id="email-disabled" placeholder="you@example.com" disabled />
     </div>
   ),
 }
