@@ -47,6 +47,11 @@ export const fetchUser = async (req: Request) => {
 
 export const updateUser = async (req: Request) => {
 	const userId = req.params.id;
+
+	if (userId !== req.session.user!.id) {
+		throw createError.Forbidden('You can only update your own profile');
+	}
+
 	const user = await prisma.user.update({
 		where: {
 			id: userId
@@ -74,8 +79,13 @@ export const updateUser = async (req: Request) => {
 }
 
 export const updateUserPassword = async (req: Request) => {
-	const {current_password, new_password} = req.body;
 	const userId = req.params.id;
+
+	if (userId !== req.session.user!.id) {
+		throw createError.Forbidden('You can only change your own password');
+	}
+	
+	const {current_password, new_password} = req.body;
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId
@@ -105,6 +115,11 @@ export const updateUserPassword = async (req: Request) => {
 
 export const deleteUser = async (req: Request) => {
 	const userId = req.params.id;
+
+	if (userId !== req.session.user!.id) {
+		throw createError.Forbidden('You can only update your own profile');
+	}
+	
 	const user = await prisma.user.delete({
 		where: {
 			id: userId
