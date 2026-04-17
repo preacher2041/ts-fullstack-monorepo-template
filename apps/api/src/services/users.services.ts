@@ -1,17 +1,17 @@
-import { Request } from 'express';
-import bcrypt from 'bcryptjs';
-import createError from 'http-errors';
-import { Prisma } from '@prisma/client';
+import { Request } from 'express'
+import bcrypt from 'bcryptjs'
+import createError from 'http-errors'
+import { Prisma } from '@prisma/client'
 
-import prisma from '../lib/db';
+import prisma from '../lib/db'
 
 export const createUser = async (data: Prisma.UserCreateInput) => {
-	data.password = bcrypt.hashSync(data.password, 8);
+	data.password = bcrypt.hashSync(data.password, 8)
 	if (data.dob) {
-		data.dob = new Date(data.dob as string);
+		data.dob = new Date(data.dob as string)
 	}
 	const user = await prisma.user.create({
-		data
+		data,
 	})
 
 	return {
@@ -21,19 +21,19 @@ export const createUser = async (data: Prisma.UserCreateInput) => {
 		firstName: user.firstName,
 		lastName: user.lastName,
 		dob: user.dob,
-	};
+	}
 }
 
 export const fetchUser = async (req: Request) => {
-	const userId = req.session.user!.id;
+	const userId = req.session.user!.id
 	const user = await prisma.user.findUnique({
 		where: {
-			id: userId
-		}
-	});
+			id: userId,
+		},
+	})
 
 	if (!user) {
-		throw createError.NotFound('User not found');
+		throw createError.NotFound('User not found')
 	}
 
 	return {
@@ -42,19 +42,19 @@ export const fetchUser = async (req: Request) => {
 		firstName: user.firstName,
 		lastName: user.lastName,
 		dob: user.dob,
-	};
+	}
 }
 
 export const updateUser = async (req: Request) => {
-	const userId = req.params.id;
+	const userId = req.params.id
 
 	if (userId !== req.session.user!.id) {
-		throw createError.Forbidden('You can only update your own profile');
+		throw createError.Forbidden('You can only update your own profile')
 	}
 
 	const user = await prisma.user.update({
 		where: {
-			id: userId
+			id: userId,
 		},
 		data: {
 			username: req.body.username,
@@ -62,11 +62,11 @@ export const updateUser = async (req: Request) => {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			dob: req.body.dob ? new Date(req.body.dob) : undefined,
-		}
-	});
+		},
+	})
 
 	if (!user) {
-		throw createError.NotFound('User not found');
+		throw createError.NotFound('User not found')
 	}
 
 	return {
@@ -75,58 +75,57 @@ export const updateUser = async (req: Request) => {
 		firstName: user.firstName,
 		lastName: user.lastName,
 		dob: user.dob,
-	};
+	}
 }
 
 export const updateUserPassword = async (req: Request) => {
-	const userId = req.params.id;
+	const userId = req.params.id
 
 	if (userId !== req.session.user!.id) {
-		throw createError.Forbidden('You can only change your own password');
+		throw createError.Forbidden('You can only change your own password')
 	}
-	
-	const {current_password, new_password} = req.body;
+
+	const { current_password, new_password } = req.body
 	const user = await prisma.user.findUnique({
 		where: {
-			id: userId
-		}
-	});
+			id: userId,
+		},
+	})
 
 	if (!user) {
-		throw createError.NotFound('User not found');
+		throw createError.NotFound('User not found')
 	}
 
-	const checkPassword = bcrypt.compareSync(current_password, user.password);
+	const checkPassword = bcrypt.compareSync(current_password, user.password)
 
 	if (!checkPassword) {
-		throw createError.Unauthorized('Passwords do not match');
+		throw createError.Unauthorized('Passwords do not match')
 	} else {
-
 		await prisma.user.update({
 			where: {
-				id: userId
+				id: userId,
 			},
 			data: {
-				password: bcrypt.hashSync(new_password, 8)
-			}
+				password: bcrypt.hashSync(new_password, 8),
+			},
 		})
 	}
 }
 
 export const deleteUser = async (req: Request) => {
-	const userId = req.params.id;
+	const userId = req.params.id
 
 	if (userId !== req.session.user!.id) {
-		throw createError.Forbidden('You can only update your own profile');
+		throw createError.Forbidden('You can only update your own profile')
 	}
-	
+
 	const user = await prisma.user.delete({
 		where: {
-			id: userId
-		}
-	});
+			id: userId,
+		},
+	})
 
 	if (!user) {
-		throw createError.NotFound('User not found');
+		throw createError.NotFound('User not found')
 	}
 }

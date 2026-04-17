@@ -1,13 +1,17 @@
-import express from 'express';
+import express from 'express'
 
-import { getCurrentSessionController, loginUserController, logoutUserController } from '../controllers/auth.controllers';
+import {
+	getCurrentSessionController,
+	loginUserController,
+	logoutUserController,
+} from '../controllers/auth.controllers'
 
-import { addAuthMiddleware } from '../middleware/auth';
+import { addAuthMiddleware } from '../middleware/auth'
 
-const router: express.Router = express.Router();
+const router: express.Router = express.Router()
 
-router.post('/login', loginUserController);
-router.post('/logout', logoutUserController);
-router.get('/session', addAuthMiddleware, getCurrentSessionController);
+router.post('/login', loginUserController)
+router.post('/logout', logoutUserController)
+router.get('/session', addAuthMiddleware, getCurrentSessionController)
 
-export default router;
+export default router

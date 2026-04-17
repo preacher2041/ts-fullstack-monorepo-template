@@ -1,74 +1,95 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express'
 
-import { createUser, deleteUser, fetchUser, updateUser, updateUserPassword } from '../services/users.services';
+import {
+	createUser,
+	deleteUser,
+	fetchUser,
+	updateUser,
+	updateUserPassword,
+} from '../services/users.services'
 
-export const createUserController = async (req: Request, res: Response, next: NextFunction) => {
+export const createUserController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	try {
-		const user = await createUser(req.body);
+		const user = await createUser(req.body)
 		req.session.user = user
 
 		res.status(200).json({
 			status: 200,
 			message: 'User created successfully',
-			data: user
+			data: user,
 		})
-	}
-	catch (e: unknown) {
-		next(e);
+	} catch (e: unknown) {
+		next(e)
 	}
 }
 
-export const fetchUserController = async (req: Request, res: Response, next: NextFunction) => {
+export const fetchUserController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	try {
-		const user = await fetchUser(req);
+		const user = await fetchUser(req)
 		res.status(200).json({
 			status: 200,
 			message: 'User profile fetched successfully',
-			user
+			user,
 		})
-	}
-	catch (e: unknown) {
-		next(e);
+	} catch (e: unknown) {
+		next(e)
 	}
 }
 
-export const deleteUserController = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteUserController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	try {
-		await deleteUser(req);
+		await deleteUser(req)
 		res.status(200).json({
 			status: 200,
 			message: 'User deleted successfully',
 		})
-	}
-	catch (e: unknown) {
-		next(e);
-	}
-}
-
-export const updateUserController = async (req: Request, res: Response, next: NextFunction) => {
-	try {
-		const user = await updateUser(req);
-		res.status(200).json({
-			status: 200,
-			message: 'User updated successfully',
-			data: user
-		})
-	}
-	catch (e: unknown) {
-		next(e);
+	} catch (e: unknown) {
+		next(e)
 	}
 }
 
-export const updateUserPasswordController = async (req: Request, res: Response, next: NextFunction) => {
+export const updateUserController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	try {
-		const user = await updateUserPassword(req);
+		const user = await updateUser(req)
 		res.status(200).json({
 			status: 200,
 			message: 'User updated successfully',
-			data: user
+			data: user,
 		})
+	} catch (e: unknown) {
+		next(e)
 	}
-	catch (e: unknown) {
-		next(e);
+}
+
+export const updateUserPasswordController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const user = await updateUserPassword(req)
+		res.status(200).json({
+			status: 200,
+			message: 'User updated successfully',
+			data: user,
+		})
+	} catch (e: unknown) {
+		next(e)
 	}
 }

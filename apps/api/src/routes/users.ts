@@ -1,13 +1,19 @@
-import express from 'express';
+import express from 'express'
 
-import { createUserController, deleteUserController, fetchUserController, updateUserController, updateUserPasswordController } from '../controllers/users.controllers';
-import { addAuthMiddleware } from '../middleware/auth';
+import {
+	createUserController,
+	deleteUserController,
+	fetchUserController,
+	updateUserController,
+	updateUserPasswordController,
+} from '../controllers/users.controllers'
+import { addAuthMiddleware } from '../middleware/auth'
 
-const router: express.Router = express.Router();
+const router: express.Router = express.Router()
 
-router.post('/create', createUserController);
+router.post('/create', createUserController)
 
-router.get('/me', addAuthMiddleware, fetchUserController);
+router.get('/me', addAuthMiddleware, fetchUserController)
 
 router.put('/:id', addAuthMiddleware, updateUserController)
 
@@ -15,4 +21,4 @@ router.patch('/:id/password', addAuthMiddleware, updateUserPasswordController)
 
 router.delete('/:id', addAuthMiddleware, deleteUserController)
 
-export default router;
+export default router
