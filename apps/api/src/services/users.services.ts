@@ -14,7 +14,14 @@ export const createUser = async (data: Prisma.UserCreateInput) => {
 		data
 	})
 
-	return user;
+	return {
+		id: user.id,
+		username: user.username,
+		email: user.email,
+		firstName: user.firstName,
+		lastName: user.lastName,
+		dob: user.dob,
+	};
 }
 
 export const fetchUser = async (req: Request) => {
