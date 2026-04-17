@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "nodemon --exec tsx ./src/index.ts",
     "build": "tsc",
+    "format": "prettier --write src --ignore-path .prettierignore",
     "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
     "start": "node dist/src/index.js",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
@@ -44,6 +46,7 @@
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
     "@template/eslint-config": "workspace:*",
+    "@template/prettier-config": "workspace:*",
     "eslint": "^9.0.0",
     "nodemon": "^3.1.11",
     "prisma": "^7.2.0",

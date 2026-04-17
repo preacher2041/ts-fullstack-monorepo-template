@@ -1,3 +1,7 @@
 pnpm --filter web format
 pnpm --filter web lint
 pnpm --filter web typecheck
+
+pnpm --filter api format
+pnpm --filter api lint
+pnpm --filter api typecheck
