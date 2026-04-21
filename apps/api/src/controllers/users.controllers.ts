@@ -15,6 +15,9 @@ export const createUserController = async (
 ) => {
 	try {
 		const user = await createUser(req.body)
+		await new Promise<void>((resolve, reject) =>
+			req.session.regenerate((err) => (err ? reject(err) : resolve()))
+		)
 		req.session.user = user
 
 		res.status(200).json({
