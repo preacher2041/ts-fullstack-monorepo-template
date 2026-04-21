@@ -9,8 +9,7 @@
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "start": "node dist/src/index.js",
-    "generate": "prisma generate",
-    "migrate": "prisma migrate dev",
+    "migrate": "prisma migrate dev && prisma generate",
     "migrate:deploy": "prisma migrate deploy",
     "studio": "prisma studio --browser none --port 5555"
   },
