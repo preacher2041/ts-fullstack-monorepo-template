@@ -24,8 +24,7 @@ export const createUser = async (data: Prisma.UserCreateInput) => {
 	}
 }
 
-export const fetchUser = async (req: Request) => {
-	const userId = req.session.user!.id
+export const fetchUser = async (userId: string) => {
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId,
@@ -45,10 +44,18 @@ export const fetchUser = async (req: Request) => {
 	}
 }
 
-export const updateUser = async (req: Request) => {
-	const userId = req.params.id
-
-	if (userId !== req.session.user!.id) {
+export const updateUser = async (
+	userId: string,
+	sessionId: string,
+	data: {
+		username?: string
+		email?: string
+		firstName?: string
+		lastName?: string
+		dob?: string
+	}
+) => {
+	if (userId !== sessionId) {
 		throw createError.Forbidden('You can only update your own profile')
 	}
 
@@ -57,11 +64,11 @@ export const updateUser = async (req: Request) => {
 			id: userId,
 		},
 		data: {
-			username: req.body.username,
-			email: req.body.email,
-			firstName: req.body.firstName,
-			lastName: req.body.lastName,
-			dob: req.body.dob ? new Date(req.body.dob) : undefined,
+			username: data.username,
+			email: data.email,
+			firstName: data.firstName,
+			lastName: data.lastName,
+			dob: data.dob ? new Date(data.dob) : undefined,
 		},
 	})
 
@@ -78,14 +85,16 @@ export const updateUser = async (req: Request) => {
 	}
 }
 
-export const updateUserPassword = async (req: Request) => {
-	const userId = req.params.id
-
-	if (userId !== req.session.user!.id) {
+export const updateUserPassword = async (
+	userId: string,
+	sessionId: string,
+	current_password: string,
+	new_password: string
+) => {
+	if (userId !== sessionId) {
 		throw createError.Forbidden('You can only change your own password')
 	}
 
-	const { current_password, new_password } = req.body
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId,
@@ -112,10 +121,8 @@ export const updateUserPassword = async (req: Request) => {
 	}
 }
 
-export const deleteUser = async (req: Request) => {
-	const userId = req.params.id
-
-	if (userId !== req.session.user!.id) {
+export const deleteUser = async (userId: string, sessionId: string) => {
+	if (userId !== sessionId) {
 		throw createError.Forbidden('You can only update your own profile')
 	}
 
