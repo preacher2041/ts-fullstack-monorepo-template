@@ -1,6 +1,9 @@
 import z from 'zod'
+import { useNavigate } from '@tanstack/react-router'
 
+import { useRegisterMutation } from '@/features/Auth/api'
 import { RegistrationForm } from './RegistrationForm'
+import { RegistrationFormValues } from '../../types'
 
 const registrationFormSchema = z.object({
 	firstName: z.string().min(1, 'First name is required'),
@@ -15,9 +18,21 @@ const registrationFormSchema = z.object({
 })
 
 export const RegistrationContainer = () => {
+	const navigate = useNavigate()
+	const { mutate: register, isPending, isError } = useRegisterMutation()
+
+	const handleSubmit = (values: RegistrationFormValues) => {
+		register(values, { onSuccess: () => navigate({ to: '/' }) })
+	}
+
 	return (
 		<div>
-			<RegistrationForm registrationFormSchema={registrationFormSchema} />
+			<RegistrationForm
+				registrationFormSchema={registrationFormSchema}
+				onSubmit={handleSubmit}
+				isPending={isPending}
+				isError={isError}
+			/>
 		</div>
 	)
 }

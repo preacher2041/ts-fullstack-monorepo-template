@@ -1,25 +1,21 @@
 import { type ZodType } from 'zod'
 
 import { useAppForm } from '@template/ui'
-
-type RegistrationFormValues = {
-	firstName: string
-	lastName: string
-	email: string
-	dob: string
-	username: string
-	password: string
-}
+import { RegistrationFormValues } from '../../types'
 
 type RegistrationFormProps = {
 	registrationFormSchema: ZodType<
 		RegistrationFormValues,
 		RegistrationFormValues
 	>
+	onSubmit: (values: RegistrationFormValues) => void
+	isPending: boolean
+	isError: boolean
 }
 
 export const RegistrationForm = ({
 	registrationFormSchema,
+	onSubmit,
 }: RegistrationFormProps) => {
 	const defaultValues: RegistrationFormValues = {
 		firstName: '',
@@ -36,7 +32,7 @@ export const RegistrationForm = ({
 			onChange: registrationFormSchema,
 		},
 		onSubmit: ({ value }) => {
-			alert(JSON.stringify(value, null, 2))
+			onSubmit(value)
 		},
 	})
 
