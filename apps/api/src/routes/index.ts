@@ -8,7 +8,7 @@ import { mapPrismaError } from '../lib/prismaError'
 const router: Router = Router()
 
 router.use('/auth', auth)
-router.use('/user', users)
+router.use('/users', users)
 
 router.use(async (_req, _res, next) => {
 	next(createError.NotFound('Route not Found'))

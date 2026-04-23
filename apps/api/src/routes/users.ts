@@ -11,7 +11,7 @@ import { addAuthMiddleware } from '../middleware/auth'
 
 const router: express.Router = express.Router()
 
-router.post('/create', createUserController)
+router.post('/', createUserController)
 
 router.get('/me', addAuthMiddleware, fetchUserController)
 

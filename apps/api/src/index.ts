@@ -38,7 +38,7 @@ app.use(
 		name: 'MySessionID',
 		cookie: {
 			httpOnly: true,
-			domain: process.env['COOKIE_DOMAIN'] || 'localhost',
+			domain: process.env['COOKIE_DOMAIN'],
 		},
 		secret: sessionSecret,
 		resave: true,
