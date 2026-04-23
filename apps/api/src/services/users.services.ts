@@ -1,4 +1,3 @@
-import { Request } from 'express'
 import bcrypt from 'bcryptjs'
 import createError from 'http-errors'
 import { Prisma } from '@prisma/client'
@@ -88,8 +87,8 @@ export const updateUser = async (
 export const updateUserPassword = async (
 	userId: string,
 	sessionId: string,
-	current_password: string,
-	new_password: string
+	currentPassword: string,
+	newPassword: string
 ) => {
 	if (userId !== sessionId) {
 		throw createError.Forbidden('You can only change your own password')
@@ -105,7 +104,7 @@ export const updateUserPassword = async (
 		throw createError.NotFound('User not found')
 	}
 
-	const checkPassword = bcrypt.compareSync(current_password, user.password)
+	const checkPassword = bcrypt.compareSync(currentPassword, user.password)
 
 	if (!checkPassword) {
 		throw createError.Unauthorized('Passwords do not match')
@@ -115,7 +114,7 @@ export const updateUserPassword = async (
 				id: userId,
 			},
 			data: {
-				password: bcrypt.hashSync(new_password, 8),
+				password: bcrypt.hashSync(newPassword, 8),
 			},
 		})
 	}
