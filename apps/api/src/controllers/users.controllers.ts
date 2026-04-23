@@ -36,7 +36,7 @@ export const fetchUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		const user = await fetchUser(req)
+		const user = await fetchUser(req.session.user!.id)
 		res.status(200).json({
 			status: 200,
 			message: 'User profile fetched successfully',
@@ -53,7 +53,7 @@ export const deleteUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		await deleteUser(req)
+		await deleteUser(req.params.id, req.session.user!.id)
 		res.status(200).json({
 			status: 200,
 			message: 'User deleted successfully',
@@ -69,7 +69,11 @@ export const updateUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		const user = await updateUser(req)
+		const user = await updateUser(
+			req.params.id,
+			req.session.user!.id,
+			req.body
+		)
 		res.status(200).json({
 			status: 200,
 			message: 'User updated successfully',
@@ -86,7 +90,12 @@ export const updateUserPasswordController = async (
 	next: NextFunction
 ) => {
 	try {
-		const user = await updateUserPassword(req)
+		const user = await updateUserPassword(
+			req.params.id,
+			req.session.user!.id,
+			req.body.current_password,
+			req.body.new_password
+		)
 		res.status(200).json({
 			status: 200,
 			message: 'User updated successfully',
