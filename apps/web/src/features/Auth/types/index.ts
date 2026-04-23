@@ -1,33 +1,11 @@
-export type LoginCredentials = {
-	email: string
-	password: string
-}
+export type {
+	LoginCredentials,
+	CreateUserInput as RegistrationCredentials,
+	MeResponse,
+	UserResponse as User,
+} from '@template/schemas'
 
-export type RegistrationCredentials = {
-	email: string
-	password: string
-	firstName: string
-	lastName: string
-	username: string
-	dob: string
-}
-
-export type MeResponse = {
-	message: string
-	status: number
-	user: User
-}
-
-export type User = {
-	id: number
-	createdAt: string
-	dob: string
-	email: string
-	firstName: string
-	lastName: string
-	updatedAt: string
-	username: string
-}
+import type { LoginCredentials, CreateUserInput } from '@template/schemas'
 
 export type LoginFormValues = LoginCredentials
-export type RegistrationFormValues = RegistrationCredentials
+export type RegistrationFormValues = CreateUserInput

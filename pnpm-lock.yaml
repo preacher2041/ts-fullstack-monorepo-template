@@ -71,6 +71,9 @@ importers:
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@template/eslint-config':
         specifier: workspace:*
@@ -78,6 +81,9 @@ importers:
       '@template/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
+      '@template/schemas':
+        specifier: workspace:*
+        version: link:../../packages/schemas
       '@types/cookie-parser':
         specifier: ^1.4.10
         version: 1.4.10(@types/express@5.0.6)
@@ -259,6 +265,9 @@ importers:
       '@template/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
+      '@template/schemas':
+        specifier: workspace:*
+        version: link:../../packages/schemas
       '@template/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -346,6 +355,19 @@ importers:
         version: 8.51.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
 
   packages/prettier-config: {}
+
+  packages/schemas:
+    dependencies:
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
+    devDependencies:
+      '@template/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/tailwind-config:
     devDependencies:

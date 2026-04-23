@@ -93,8 +93,8 @@ export const updateUserPasswordController = async (
 		const user = await updateUserPassword(
 			req.params.id,
 			req.session.user!.id,
-			req.body.current_password,
-			req.body.new_password
+			req.body.currentPassword,
+			req.body.newPassword
 		)
 		res.status(200).json({
 			status: 200,

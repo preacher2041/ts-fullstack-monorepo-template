@@ -33,6 +33,7 @@
     "@eslint/js": "^9.39.2",
     "@template/eslint-config": "workspace:*",
     "@template/prettier-config": "workspace:*",
+    "@template/schemas": "workspace:*",
     "@template/tailwind-config": "workspace:*",
     "@template/typescript-config": "workspace:*",
     "@template/vitest-config": "workspace:*",

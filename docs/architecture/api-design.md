@@ -150,12 +150,12 @@ Protected. Changes password after verifying the current one.
 Request body:
 ```json
 {
-  "current_password": "oldSecret",
-  "new_password": "newSecret"
+  "currentPassword": "oldSecret",
+  "newPassword": "newSecret"
 }
 ```
 
-Returns the updated user record (without password) on success. The service throws `401 Unauthorized` if `current_password` does not match.
+Returns the updated user record (without password) on success. The service throws `401 Unauthorized` if `currentPassword` does not match.
 
 #### `DELETE /api/v1/user/:id`
 
