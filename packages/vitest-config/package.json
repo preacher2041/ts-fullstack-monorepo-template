@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@template/typescript-config": "workspace:*",
-        "@vitest/ui": "4.0.16",
+        "jsdom": "^25.0.0",
         "vitest": "^4.0.16"
     }
 }
