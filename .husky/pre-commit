@@ -5,3 +5,4 @@ pnpm --filter web typecheck
 pnpm --filter api format
 pnpm --filter api lint
 pnpm --filter api typecheck
+pnpm --filter api test:run

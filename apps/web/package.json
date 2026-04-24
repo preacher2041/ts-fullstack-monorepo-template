@@ -9,7 +9,9 @@
     "build": "vite build",
     "format": "prettier --write src --ignore-path .prettierignore",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
@@ -48,6 +50,7 @@
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "vitest": "^4.0.16"
   }
 }

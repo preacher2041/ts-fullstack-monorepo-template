@@ -10,7 +10,9 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
-    "setup": "node scripts/setup.mjs"
+    "setup": "node scripts/setup.mjs",
+    "test": "pnpm -r test:run"
+
   },
   "devDependencies": {
     "husky": "^9.1.7",
