@@ -20,7 +20,7 @@ COPY apps/api ./apps/api
 RUN pnpm install --frozen-lockfile
 
 # Generate Prisma client
-RUN pnpm --filter @template/api generate
+RUN pnpm --filter @template/api exec prisma generate
 
 # Expose the API port
 EXPOSE 3000
