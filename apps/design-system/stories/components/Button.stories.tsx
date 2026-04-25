@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { within, userEvent, expect, fn } from 'storybook/test'
 import { Button } from '@template/ui'
 
 const meta: Meta<typeof Button> = {
@@ -58,4 +59,32 @@ export const Disabled: Story = {
       <Button variant="ghost" disabled>Ghost</Button>
     </div>
   ),
+}
+
+export const FiresOnClick: Story = {
+  args: {
+    children: 'Click Me',
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement)
+
+    await userEvent.click(canvas.getByRole('button', { name: /click me/i }))
+    expect(args.onClick).toHaveBeenCalled()
+  },
+}
+
+export const DisabledDoesNotFireOnClick: Story = {
+  args: {
+    children: 'Click Me',
+    onClick: fn(),
+    disabled: true,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button', { name: /click me/i })
+
+    await expect(button).toBeDisabled()
+    await expect(args.onClick).not.toHaveBeenCalled()
+  },
 }
