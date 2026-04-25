@@ -5,6 +5,7 @@
     "type": "module",
     "exports": {
         "./base": "./configs/base-config.ts",
+        "./integration": "./configs/integration-config.ts",
         "./node": "./configs/node-config.ts",
         "./ui": "./configs/ui-configs.ts"
     },
