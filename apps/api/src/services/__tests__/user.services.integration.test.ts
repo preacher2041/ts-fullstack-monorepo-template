@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { createUser, fetchUser } from '../users.services'
+import { createUser, deleteUser, fetchUser } from '../users.services'
 import { loginUser } from '../auth.services'
 
 const testUser = {
@@ -66,6 +66,25 @@ describe('loginUser', () => {
 			})
 		).rejects.toMatchObject({
 			status: 404,
+		})
+	})
+})
+
+describe('deleteUser', () => {
+	it('deletes a user so they can no longer be fetched', async () => {
+		const user = await createUser({ ...testUser })
+		await deleteUser(user.id, user.id)
+		await expect(fetchUser(user.id)).rejects.toMatchObject({
+			status: 404,
+		})
+	})
+
+	it('throws a 403 when userId does not match sessionId', async () => {
+		const user = await createUser({ ...testUser })
+		await expect(
+			deleteUser(user.id, 'different-session-id')
+		).rejects.toMatchObject({
+			status: 403,
 		})
 	})
 })
