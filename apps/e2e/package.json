@@ -1,0 +1,13 @@
+{
+    "name": "@template/e2e",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "test:e2e": "playwright test"
+    },
+    "devDependencies": {
+      "@playwright/test": "1.57.0",
+      "@template/typescript-config": "workspace:*",
+      "@types/node": "^22.0.0"
+    }
+  }
