@@ -28,7 +28,9 @@ export const Route = createRootRouteWithContext<{
 		const { authenticated } =
 			await context.queryClient.ensureQueryData(sessionQuery)
 
-		const isAuthRoute = ['/login', '/register'].includes(location.pathname)
+		const isAuthRoute = ['/login', '/registration'].includes(
+			location.pathname
+		)
 
 		if (!authenticated && !isAuthRoute) {
 			throw redirect({ to: '/login' })
