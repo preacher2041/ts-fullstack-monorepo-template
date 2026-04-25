@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { within, userEvent, expect, waitFor } from 'storybook/test'
 import { PasswordInput } from '@template/ui'
 
 const meta: Meta<typeof PasswordInput> = {
@@ -40,4 +41,30 @@ export const Disabled: Story = {
     placeholder: 'Enter password...',
     disabled: true,
   },
+}
+
+export const ShowHideToggle: Story = {
+  args: {
+    placeholder: 'Enter password...',
+    'aria-label': 'Password',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    
+    const input = canvas.getByLabelText('Password')
+    
+    await expect(input).toHaveAttribute('type', 'password')
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Show password' }))
+
+    await waitFor(() =>
+      expect(input).toHaveAttribute('type', 'text')
+    )
+
+    await userEvent.click(canvas.getByRole('button', { name: 'Hide password' }))
+
+    await waitFor(() =>
+      expect(input).toHaveAttribute('type', 'password')
+    )
+  }
 }

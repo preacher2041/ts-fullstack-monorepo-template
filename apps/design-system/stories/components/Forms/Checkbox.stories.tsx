@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { within, userEvent, expect, waitFor } from 'storybook/test'
 import { Checkbox } from '@template/ui'
 
 const meta: Meta<typeof Checkbox> = {
@@ -67,4 +68,44 @@ export const AllStates: Story = {
       <Checkbox defaultChecked disabled />
     </div>
   ),
+}
+
+export const ToggleOnClick: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const checkbox = canvas.getByRole('checkbox')
+
+    await expect(checkbox).not.toBeChecked()
+
+    await userEvent.click(checkbox)
+
+    await waitFor(() =>
+      expect(checkbox).toBeChecked()
+    )
+
+    await userEvent.click(checkbox)
+
+    await waitFor(() =>
+      expect(checkbox).not.toBeChecked()
+    )
+  },
+}
+
+export const DisableDoesNotToggle: Story = {
+  args: {
+    disabled: true,
+    defaultChecked: false,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const checkbox = canvas.getByRole('checkbox')
+
+    await expect(checkbox).not.toBeChecked()
+
+    await userEvent.click(checkbox)
+
+    await waitFor(() =>
+      expect(checkbox).not.toBeChecked()
+    )
+  },
 }
