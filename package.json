@@ -11,7 +11,8 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "setup": "node scripts/setup.mjs",
-    "test": "pnpm -r test:run"
+    "test": "pnpm -r test:run",
+    "test:e2e": "pnpm --filter @template/e2e test:e2e"
 
   },
   "devDependencies": {
