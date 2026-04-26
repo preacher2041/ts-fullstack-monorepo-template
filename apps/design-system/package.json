@@ -31,11 +31,11 @@
     "tailwindcss": "^4.1.18",
     "vitest": "^4.0.16",
     "vite": "^6.0.0"
-    
   },
   "scripts": {
     "dev": "storybook dev -p 6006 --no-open",
     "build": "storybook build",
+    "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",
     "test:ci": "playwright install chromium --with-deps && vitest run",

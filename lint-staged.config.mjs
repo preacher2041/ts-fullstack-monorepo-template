@@ -8,4 +8,6 @@ export default {
     `pnpm --filter @template/api exec eslint --fix ${files.join(" ")}`,
   "packages/ui/**/*.{ts,tsx}": (files) =>
     `pnpm --filter @template/ui exec eslint --fix ${files.join(" ")}`,
+  "apps/design-system/**/*.{ts,tsx}": (files) =>
+    `pnpm --filter @template/design-system exec eslint --fix ${files.join(" ")}`,
 };

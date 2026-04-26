@@ -6,3 +6,4 @@ STAGED=$(git diff --name-only --cached)
 
 echo "$STAGED" | grep -qE '^(apps/web|packages/ui)/' && pnpm --filter web typecheck || true
 echo "$STAGED" | grep -qE '^apps/api/' && pnpm --filter api typecheck || true
+echo "$STAGED" | grep -qE '^apps/design-system/' && pnpm --filter @template/design-system typecheck || true
