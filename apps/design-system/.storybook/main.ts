@@ -17,6 +17,10 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     return {
       ...config,
+      resolve: {
+        ...config.resolve,
+        dedupe: ['react', 'react-dom']
+      },
       optimizeDeps: {
         ...config.optimizeDeps,
         include: [
