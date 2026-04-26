@@ -26,6 +26,8 @@ const config: StorybookConfig = {
         include: [
           ...(config.optimizeDeps?.include || []),
           '@radix-ui/react-icons',
+          'react',
+          'react-dom',
         ],
       },
     }
