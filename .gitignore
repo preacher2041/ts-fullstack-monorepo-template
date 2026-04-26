@@ -6,3 +6,5 @@ storybook-static
 
 CLAUDE.md
 .claude
+
+packages/vitest-config/dist

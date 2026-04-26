@@ -13,5 +13,9 @@
         "@template/typescript-config": "workspace:*",
         "jsdom": "^25.0.0",
         "vitest": "^4.0.16"
+    },
+    "scripts": {
+        "prepare": "tsc",
+        "build": "tsc"
     }
 }
