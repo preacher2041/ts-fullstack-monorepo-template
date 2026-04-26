@@ -4,14 +4,18 @@
     "description": "Vitest configuration",
     "type": "module",
     "exports": {
-        "./base": "./configs/base-config.ts",
-        "./integration": "./configs/integration-config.ts",
-        "./node": "./configs/node-config.ts",
-        "./ui": "./configs/ui-configs.ts"
+        "./base": "./dist/configs/base-config.js",
+        "./integration": "./dist/configs/integration-config.js",
+        "./node": "./dist/configs/node-config.js",
+        "./ui": "./dist/configs/ui-configs.js"
     },
     "devDependencies": {
         "@template/typescript-config": "workspace:*",
         "jsdom": "^25.0.0",
         "vitest": "^4.0.16"
+    },
+    "scripts": {
+        "prepare": "tsc",
+        "build": "tsc"
     }
 }

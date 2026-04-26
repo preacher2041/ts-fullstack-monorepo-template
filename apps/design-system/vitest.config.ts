@@ -11,6 +11,18 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
+    optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react/jsx-dev-runtime',
+      '@template/ui > radix-ui',
+      '@template/ui > @tanstack/react-form',
+    ],
+  },
   test: {
     projects: [
       {

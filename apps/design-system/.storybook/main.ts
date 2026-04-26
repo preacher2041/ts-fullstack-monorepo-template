@@ -17,11 +17,20 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     return {
       ...config,
+      resolve: {
+        ...config.resolve,
+        dedupe: ['react', 'react-dom']
+      },
       optimizeDeps: {
         ...config.optimizeDeps,
         include: [
           ...(config.optimizeDeps?.include || []),
           '@radix-ui/react-icons',
+          'react',
+          'react-dom',
+          'react/jsx-dev-runtime',
+          '@template/ui > radix-ui',
+          '@template/ui > @tanstack/react-form',
         ],
       },
     }
