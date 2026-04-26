@@ -15,8 +15,14 @@ export default defineConfig({
       dedupe: ['react', 'react-dom'],
     },
     optimizeDeps: {
-      include: ['react', 'react-dom'],
-    },
+    include: [
+      'react',
+      'react-dom',
+      'react/jsx-dev-runtime',
+      '@template/ui > radix-ui',
+      '@template/ui > @tanstack/react-form',
+    ],
+  },
   test: {
     projects: [
       {

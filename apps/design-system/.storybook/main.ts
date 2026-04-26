@@ -28,6 +28,9 @@ const config: StorybookConfig = {
           '@radix-ui/react-icons',
           'react',
           'react-dom',
+          'react/jsx-dev-runtime',
+          '@template/ui > radix-ui',
+          '@template/ui > @tanstack/react-form',
         ],
       },
     }
