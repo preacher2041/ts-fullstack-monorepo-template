@@ -18,6 +18,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Build shared packages
+        run: pnpm --filter @template/vitest-config build
       - name: Run API tests
         run: pnpm --filter api test:run
 
@@ -34,6 +36,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Build shared packages
+        run: pnpm --filter @template/vitest-config build
       - name: Run web tests
         run: pnpm --filter web test:run
 
@@ -50,5 +54,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Build shared packages
+        run: pnpm --filter @template/vitest-config build
       - name: Run design system tests
         run: pnpm --filter design-system test:ci
