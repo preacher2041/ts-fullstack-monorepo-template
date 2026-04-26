@@ -13,10 +13,11 @@
     "setup": "node scripts/setup.mjs",
     "test": "pnpm -r test:run",
     "test:e2e": "pnpm --filter @template/e2e test:e2e"
-
   },
   "devDependencies": {
     "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3"
   }
 }
