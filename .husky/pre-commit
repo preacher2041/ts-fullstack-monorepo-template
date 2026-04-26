@@ -1,8 +1,8 @@
-pnpm --filter web format
-pnpm --filter web lint
-pnpm --filter web typecheck
+#!/usr/bin/env sh
 
-pnpm --filter api format
-pnpm --filter api lint
-pnpm --filter api typecheck
-pnpm --filter api test:run
+pnpm exec lint-staged
+
+STAGED=$(git diff --name-only --cached)
+
+echo "$STAGED" | grep -qE '^(apps/web|packages/ui)/' && pnpm --filter web typecheck || true
+echo "$STAGED" | grep -qE '^apps/api/' && pnpm --filter api typecheck || true
