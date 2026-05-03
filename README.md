@@ -1,6 +1,6 @@
 # Monorepo Template
 
-A batteries-included monorepo template for fullstack TypeScript projects. Clone it, run the setup script, and start building your app!
+A batteries-included monorepo template for fullstack TypeScript projects. Clone it, run the setup script, and start building your app.
 
 ## What's included
 
