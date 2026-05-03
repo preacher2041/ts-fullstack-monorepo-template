@@ -52,9 +52,15 @@ importers:
       express:
         specifier: ^5.2.1
         version: 5.2.1
+      express-rate-limit:
+        specifier: ^8.4.1
+        version: 8.4.1(express@5.2.1)
       express-session:
         specifier: ^1.18.2
         version: 1.18.2
+      helmet:
+        specifier: ^8.1.0
+        version: 8.1.0
       http-errors:
         specifier: ^2.0.1
         version: 2.0.1
@@ -101,6 +107,9 @@ importers:
       "@types/express":
         specifier: ^5.0.6
         version: 5.0.6
+      "@types/express-rate-limit":
+        specifier: ^6.0.2
+        version: 6.0.2(express@5.2.1)
       "@types/express-session":
         specifier: ^1.18.2
         version: 1.18.2
@@ -3400,6 +3409,13 @@ packages:
         integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==,
       }
 
+  "@types/express-rate-limit@6.0.2":
+    resolution:
+      {
+        integrity: sha512-e1xZLOOlxCDvplAGq7rDcXtbdBu2CWRsMjaIu1LVqGxWtKvwr884YE5mPs3IvHeG/OMDhf24oTaqG5T1bV3rBQ==,
+      }
+    deprecated: This is a stub types definition. express-rate-limit provides its own type definitions, so you do not need this installed.
+
   "@types/express-serve-static-core@5.1.0":
     resolution:
       {
@@ -4995,6 +5011,15 @@ packages:
       }
     engines: { node: ">=12.0.0" }
 
+  express-rate-limit@8.4.1:
+    resolution:
+      {
+        integrity: sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQCm+rFvLsBH6w4xcXWTcliS8La5EPRN3p9wzItqBwJrfNw==,
+      }
+    engines: { node: ">= 16" }
+    peerDependencies:
+      express: ">= 4.11"
+
   express-session@1.18.2:
     resolution:
       {
@@ -5387,6 +5412,13 @@ packages:
       }
     engines: { node: ">= 0.4" }
 
+  helmet@8.1.0:
+    resolution:
+      {
+        integrity: sha512-jOiHyAZsmnr8LqoPGmCjYAaiuWwjAPLgY8ZX2XrmHawt99/u1y6RgrZMTeoPfpUbV96HOalYgz1qzkRbw54Pmg==,
+      }
+    engines: { node: ">=18.0.0" }
+
   hermes-estree@0.25.1:
     resolution:
       {
@@ -5528,6 +5560,13 @@ packages:
         integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==,
       }
     engines: { node: ">= 0.4" }
+
+  ip-address@10.1.0:
+    resolution:
+      {
+        integrity: sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==,
+      }
+    engines: { node: ">= 12" }
 
   ipaddr.js@1.9.1:
     resolution:
@@ -10379,6 +10418,12 @@ snapshots:
 
   "@types/estree@1.0.8": {}
 
+  "@types/express-rate-limit@6.0.2(express@5.2.1)":
+    dependencies:
+      express-rate-limit: 8.4.1(express@5.2.1)
+    transitivePeerDependencies:
+      - express
+
   "@types/express-serve-static-core@5.1.0":
     dependencies:
       "@types/node": 25.0.3
@@ -10579,7 +10624,7 @@ snapshots:
       "@vitest/mocker": 4.0.16(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3))
       playwright: 1.57.0
       tinyrainbow: 3.1.0
-      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.1.5)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
+      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.0.16)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -10613,7 +10658,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.1.5)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
+      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.0.16)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -11571,6 +11616,11 @@ snapshots:
 
   expect-type@1.2.2: {}
 
+  express-rate-limit@8.4.1(express@5.2.1):
+    dependencies:
+      express: 5.2.1
+      ip-address: 10.1.0
+
   express-session@1.18.2:
     dependencies:
       cookie: 0.7.2
@@ -11830,6 +11880,8 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
+  helmet@8.1.0: {}
+
   hermes-estree@0.25.1: {}
 
   hermes-parser@0.25.1:
@@ -11905,6 +11957,8 @@ snapshots:
       es-errors: 1.3.0
       hasown: 2.0.2
       side-channel: 1.1.0
+
+  ip-address@10.1.0: {}
 
   ipaddr.js@1.9.1: {}
 
