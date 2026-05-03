@@ -4,13 +4,13 @@ A batteries-included monorepo template for fullstack TypeScript projects. Clone 
 
 ## What's included
 
-| Layer | Technology |
-|---|---|
-| API | Express 5, Prisma 7 (PostgreSQL), session auth |
-| Web | React 19, Vite, TanStack Router, Tailwind CSS v4 |
-| Design system | Storybook 10 |
+| Layer           | Technology                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------------- |
+| API             | Express 5, Prisma 7 (PostgreSQL), session auth                                                |
+| Web             | React 19, Vite, TanStack Router, Tailwind CSS v4                                              |
+| Design system   | Storybook 10                                                                                  |
 | Shared packages | UI library, ESLint config, Prettier config, Tailwind config, TypeScript config, Vitest config |
-| Infrastructure | Docker Compose (dev + prod), multi-stage Dockerfiles |
+| Infrastructure  | Docker Compose (dev + prod), multi-stage Dockerfiles                                          |
 
 ## Prerequisites
 
@@ -36,6 +36,7 @@ pnpm run setup
 ```
 
 This will prompt you for:
+
 - **Project name** — e.g. `my-app`
 - **Package scope** — e.g. `mycompany` (becomes `@mycompany`)
 
@@ -61,12 +62,12 @@ pnpm --filter @<scope>/api migrate
 docker compose up api-dev web-dev
 ```
 
-| Service | URL |
-|---|---|
-| Web app | http://localhost:9000 |
-| API | http://localhost:3001 |
-| Storybook | http://localhost:6006 (run `docker compose up design-system-dev`) |
-| Prisma Studio | http://localhost:5555 (run `docker compose up prisma-studio`) |
+| Service       | URL                                                               |
+| ------------- | ----------------------------------------------------------------- |
+| Web app       | http://localhost:9000                                             |
+| API           | http://localhost:3001                                             |
+| Storybook     | http://localhost:6006 (run `docker compose up design-system-dev`) |
+| Prisma Studio | http://localhost:5555 (run `docker compose up prisma-studio`)     |
 
 ## Monorepo structure
 
