@@ -10,15 +10,16 @@ All routes are mounted under `/api/v1`. The Express app listens on the port spec
 
 ### Auth routes (`/api/v1/auth`)
 
-| Method | Path | Auth required | Description |
-|---|---|---|---|
-| `POST` | `/api/v1/auth/login` | No | Authenticate with email + password; creates session |
-| `POST` | `/api/v1/auth/logout` | No | Destroys session and clears session cookie |
-| `GET` | `/api/v1/auth/session` | Yes | Returns whether the current session is authenticated |
+| Method | Path                   | Auth required | Description                                          |
+| ------ | ---------------------- | ------------- | ---------------------------------------------------- |
+| `POST` | `/api/v1/auth/login`   | No            | Authenticate with email + password; creates session  |
+| `POST` | `/api/v1/auth/logout`  | No            | Destroys session and clears session cookie           |
+| `GET`  | `/api/v1/auth/session` | Yes           | Returns whether the current session is authenticated |
 
 #### `POST /api/v1/auth/login`
 
 Request body:
+
 ```json
 {
   "email": "user@example.com",
@@ -27,6 +28,7 @@ Request body:
 ```
 
 Success response (`200`):
+
 ```json
 {
   "status": 200,
@@ -42,6 +44,7 @@ On login, `express-session` sets an HTTP-only cookie named `MySessionID`. The se
 No request body required.
 
 Success response (`200`):
+
 ```json
 {
   "status": 200,
@@ -56,6 +59,7 @@ Calls `req.session.destroy()` and clears the `MySessionID` cookie.
 Protected by `addAuthMiddleware`.
 
 Success response (`200`):
+
 ```json
 {
   "authenticated": true
@@ -66,19 +70,20 @@ Returns `authenticated: false` if the session exists but has no user. Returns `4
 
 ---
 
-### User routes (`/api/v1/user`)
+### User routes (`/api/v1/users`)
 
-| Method | Path | Auth required | Description |
-|---|---|---|---|
-| `POST` | `/api/v1/user/create` | No | Register a new user; establishes session |
-| `GET` | `/api/v1/user/me` | Yes | Fetch the current user's profile |
-| `PUT` | `/api/v1/user/:id` | Yes | Update profile fields for a user |
-| `PATCH` | `/api/v1/user/:id/password` | Yes | Change password (requires current password) |
-| `DELETE` | `/api/v1/user/:id` | Yes | Delete a user account |
+| Method   | Path                         | Auth required | Description                                 |
+| -------- | ---------------------------- | ------------- | ------------------------------------------- |
+| `POST`   | `/api/v1/users/`             | No            | Register a new user; establishes session    |
+| `GET`    | `/api/v1/users/me`           | Yes           | Fetch the current user's profile            |
+| `PUT`    | `/api/v1/users/:id`          | Yes           | Update profile fields for a user            |
+| `PATCH`  | `/api/v1/users/:id/password` | Yes           | Change password (requires current password) |
+| `DELETE` | `/api/v1/users/:id`          | Yes           | Delete a user account                       |
 
-#### `POST /api/v1/user/create`
+#### `POST /api/v1/users/`
 
 Request body (all fields accepted by `Prisma.UserCreateInput`):
+
 ```json
 {
   "email": "user@example.com",
@@ -93,11 +98,14 @@ Request body (all fields accepted by `Prisma.UserCreateInput`):
 The service hashes `password` with bcrypt (salt rounds: 8) before writing to the database. `dob` is coerced to a `Date` object if present.
 
 Success response (`200`):
+
 ```json
 {
   "status": 200,
   "message": "User created successfully",
-  "data": { /* full Prisma user record including hashed password */ }
+  "data": {
+    /* full Prisma user record including hashed password */
+  }
 }
 ```
 
@@ -105,11 +113,12 @@ Success response (`200`):
 
 After creation, the session is populated identically to login: `req.session.user = { id, username, email }`.
 
-#### `GET /api/v1/user/me`
+#### `GET /api/v1/users/me`
 
 Protected by `addAuthMiddleware`. Uses `req.session.user.id` to look up the record.
 
 Success response (`200`):
+
 ```json
 {
   "status": 200,
@@ -126,11 +135,12 @@ Success response (`200`):
 
 Password is explicitly excluded by the service.
 
-#### `PUT /api/v1/user/:id`
+#### `PUT /api/v1/users/:id`
 
 Protected. Updates profile fields. Only `username`, `email`, `firstName`, `lastName`, and `dob` can be changed through this endpoint — `password` is not.
 
 Request body (all optional):
+
 ```json
 {
   "username": "johnd",
@@ -143,11 +153,12 @@ Request body (all optional):
 
 **Open question:** The route uses `:id` from `req.params.id` but does not verify that the `:id` in the path matches the authenticated session's user ID. Any authenticated user could potentially update another user's record.
 
-#### `PATCH /api/v1/user/:id/password`
+#### `PATCH /api/v1/users/:id/password`
 
 Protected. Changes password after verifying the current one.
 
 Request body:
+
 ```json
 {
   "currentPassword": "oldSecret",
@@ -157,7 +168,7 @@ Request body:
 
 Returns the updated user record (without password) on success. The service throws `401 Unauthorized` if `currentPassword` does not match.
 
-#### `DELETE /api/v1/user/:id`
+#### `DELETE /api/v1/users/:id`
 
 Protected. Deletes the user record from the database. No soft-delete mechanism exists.
 
@@ -193,6 +204,7 @@ The error handler in `routes/index.ts` is responsible for producing this shape.
 Session-based. `express-session` manages a server-side session store (in-memory by default — appropriate for development only; a Redis or database-backed store should be used in production). The session ID is sent to the client as an HTTP-only cookie named `MySessionID`, scoped to the domain specified by `COOKIE_DOMAIN` (default: `localhost`).
 
 The `addAuthMiddleware` function enforces authentication on protected routes. It checks:
+
 1. That `req.cookies` is populated (cookie-parser must have run)
 2. That `req.cookies.MySessionID` exists
 3. That `req.session.user` exists

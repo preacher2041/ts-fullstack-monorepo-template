@@ -53,7 +53,7 @@ cp apps/api/.env.sample apps/api/.env
 
 ```bash
 docker compose up postgres -d
-pnpm --filter @<scope>/api migrate
+docker compose exec api-dev pnpm --filter @<scope>/api migrate
 ```
 
 ### 5. Start development

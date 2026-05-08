@@ -10,6 +10,7 @@ Annotated breakdown of every significant directory and file in the monorepo.
 │   └── design-system/              # Storybook component catalogue
 ├── packages/
 │   ├── ui/                         # Shared React component library
+│   ├── schemas/                    # Shared Zod schemas and TypeScript types
 │   ├── eslint-config/              # Shared ESLint rules
 │   ├── prettier-config/            # Shared Prettier rules
 │   ├── tailwind-config/            # Shared Tailwind base CSS
@@ -36,10 +37,10 @@ apps/api/
 ├── src/
 │   ├── index.ts                    # App bootstrap: middleware stack, session, router mount
 │   ├── routes/
-│   │   ├── index.ts                # Root router: mounts /auth and /user sub-routers; 
+│   │   ├── index.ts                # Root router: mounts /auth and /users sub-routers;
 │   │   │                           # contains the 404 handler and global error handler
 │   │   ├── auth.ts                 # POST /login, POST /logout, GET /session
-│   │   └── users.ts                # POST /create, GET /me, PUT /:id, PATCH /:id/password,
+│   │   └── users.ts                # POST /, GET /me, PUT /:id, PATCH /:id/password,
 │   │                               # DELETE /:id
 │   ├── controllers/
 │   │   ├── auth.controllers.ts     # Thin request/response layer for auth routes
@@ -49,8 +50,9 @@ apps/api/
 │   │   └── users.services.ts       # createUser, fetchUser, updateUser,
 │   │                               # updateUserPassword, deleteUser
 │   ├── middleware/
-│   │   └── auth.ts                 # addAuthMiddleware: checks for session cookie and
-│   │                               # req.session.user; returns 401 if absent
+│   │   ├── auth.ts                 # addAuthMiddleware: checks for session cookie and
+│   │   │                           # req.session.user; returns 401 if absent
+│   │   └── validate.ts             # Zod request body validation; returns 400 on failure
 │   └── lib/
 │       ├── db.ts                   # Singleton PrismaClient (PrismaPg driver)
 │       └── prismaError.ts          # Maps Prisma known errors to http-errors status codes
@@ -177,6 +179,7 @@ packages/ui/
 ## `packages/eslint-config/`
 
 Three named ESLint flat-config exports:
+
 - `index.js` — re-exports both React and Node configs
 - `react.js` — for browser/React packages
 - `node.js` — for Node.js packages (API)
@@ -198,6 +201,7 @@ Exports a shared `shared-styles.css` (base `@import 'tailwindcss'`) and a `postc
 ## `packages/typescript-config/`
 
 Two tsconfig presets:
+
 - `base.json` — strict TypeScript with bundler module resolution; targets ES2015
 - `vite.json` — extends base, adds Vite-specific overrides
 
@@ -206,6 +210,7 @@ Two tsconfig presets:
 ## `packages/vitest-config/`
 
 Two Vitest preset configs:
+
 - `base-config` — jsdom environment
 - `ui-config` — extends base with `defineProject` (for workspace mode)
 
@@ -214,6 +219,7 @@ Two Vitest preset configs:
 ## `scripts/setup.mjs`
 
 A one-time initialisation script (`pnpm run setup`). It walks the entire file tree and replaces:
+
 - `@template` → `@<scope>`
 - `template-monorepo` → `<project>-monorepo`
 - `template-postgres` → `<project>-postgres`
@@ -227,12 +233,12 @@ Then runs `pnpm install` to regenerate the lockfile.
 
 Five services:
 
-| Service | Purpose | Port |
-|---|---|---|
-| `postgres` | PostgreSQL 17 with health check | 5432 |
-| `api-dev` | Express dev server (nodemon) | 3001 → 3000 |
-| `web-dev` | Vite dev server | 9000 |
-| `design-system-dev` | Storybook | 6006 |
-| `prisma-studio` | Prisma Studio GUI | 5555 |
+| Service             | Purpose                         | Port        |
+| ------------------- | ------------------------------- | ----------- |
+| `postgres`          | PostgreSQL 17 with health check | 5432        |
+| `api-dev`           | Express dev server (nodemon)    | 3001 → 3000 |
+| `web-dev`           | Vite dev server                 | 9000        |
+| `design-system-dev` | Storybook                       | 6006        |
+| `prisma-studio`     | Prisma Studio GUI               | 5555        |
 
 All dev services mount the entire repo as a volume (`- .:/app`) with `node_modules` excluded from the bind mount, so file changes on the host immediately reflect inside the container without a rebuild.
