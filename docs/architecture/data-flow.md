@@ -58,13 +58,16 @@ The response shape for errors is always `{ status: number, message: string }`.
 
 ## Validation
 
-There is currently no runtime validation layer between the HTTP request and the service layer. The API trusts `req.body` as-is and passes it directly to service functions or Prisma. The only enforcement at the database boundary is:
+Requests are validated by the `validate` middleware (`src/middleware/validate.ts`) before reaching the controller. It takes a Zod schema from `@template/schemas` and returns a 400 if validation fails.
 
-- Prisma's type system (`Prisma.UserCreateInput`) at compile time
-- PostgreSQL constraints at runtime (unique on `email`, non-null on required fields)
-- Prisma maps constraint violations to errors via `mapPrismaError`
+The validated schemas are:
 
-**Open question:** `swagger-jsdoc` and `swagger-ui-express` are installed as dependencies but are not mounted anywhere in the Express app. This suggests a Swagger/OpenAPI setup was intended but is not yet implemented. A Zod request validation layer (e.g. using `zod-express-middleware` or similar) is also absent.
+- `loginSchema` — `POST /auth/login`
+- `createUserSchema` — `POST /users/`
+- `updateUserSchema` — `PUT /users/:id`
+- `updateUserPasswordSchema` — `PATCH /users/:id/password`
+
+`swagger-jsdoc` and `swagger-ui-express` are installed as dependencies but are not mounted anywhere in the Express app — a Swagger/OpenAPI endpoint was intended but is not yet implemented.
 
 ---
 
@@ -73,8 +76,8 @@ There is currently no runtime validation layer between the HTTP request and the 
 ### Registration
 
 ```
-POST /api/v1/user/create
-  Body: { username, email, password, firstName?, lastName?, dob? }
+POST /api/v1/users/
+  Body: { username, email, password, firstName, lastName, dob }
     │
     ▼
 createUserController
