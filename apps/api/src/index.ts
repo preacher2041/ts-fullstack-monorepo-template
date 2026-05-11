@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express, { Express } from 'express'
@@ -25,8 +24,8 @@ app.use(
 		origin: env.CORS_ORIGIN ?? 'http://localhost:9000',
 	})
 )
-app.use(bodyParser.urlencoded({ extended: true, limit: '10kb' }))
-app.use(bodyParser.json({ limit: '10kb' }))
+app.use(express.urlencoded({ extended: true, limit: '10kb' }))
+app.use(express.json({ limit: '10kb' }))
 app.use(cookieParser())
 app.use(morgan('tiny'))
 
