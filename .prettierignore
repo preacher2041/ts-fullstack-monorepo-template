@@ -1,0 +1,2 @@
+# Ignore generated OpenAPI specification to prevent Prettier converting spaces to tabs
+apps/api/openapi-spec.json
