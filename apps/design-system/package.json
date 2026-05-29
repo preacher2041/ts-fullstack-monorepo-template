@@ -2,7 +2,6 @@
   "name": "@template/design-system",
   "version": "1.0.0",
   "description": "A design system",
-  "main": "index.js",
   "type": "module",
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",
