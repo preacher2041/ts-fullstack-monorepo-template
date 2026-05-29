@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
+import { LoginCredentials } from '@template/schemas'
 
 import { loginUser } from '../services/auth.services'
 
@@ -25,7 +26,8 @@ export const loginUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		const data = await loginUser(req.body)
+		const body = req.body as LoginCredentials
+		const data = await loginUser(body)
 
 		req.session.user = data
 		res.status(200).json({
