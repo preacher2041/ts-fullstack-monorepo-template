@@ -1,0 +1,717 @@
+type: spec.insomnia.rest/5.0
+schema_version: "5.1"
+name: Fullstack Monorepo Template API 1.0.0
+meta:
+  id: wrk_9f4585bba6d2471db47beda21b016466
+  created: 1780089940964
+  modified: 1780089940964
+  description: ""
+collection:
+  - name: Users
+    meta:
+      id: fld_16161fd5f3334aa596a654b51bb939f3
+      created: 1780089940969
+      modified: 1780089940969
+      sortKey: -1780089940969
+      description: Operations related to user registration, profile retrieval,
+        updates, and deletion.
+    children:
+      - url: "{{ _.base_url }}/users"
+        name: Create user account
+        meta:
+          id: req_6bdc687f892547559367d0e160495bd5
+          created: 1780089940972
+          modified: 1780089940972
+          isPrivate: false
+          description: Register a new user account with email and username.
+          sortKey: -1780089940972
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "firstName": "string",
+              "lastName": "string",
+              "email": "user@example.com",
+              "dob": "string",
+              "username": "string",
+              "password": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/users/:id"
+        name: Update user profile
+        meta:
+          id: req_a11419eb884240999805608c6856025f
+          created: 1780089940973
+          modified: 1780089940973
+          isPrivate: false
+          description: Update the user profile information such as username and email.
+          sortKey: -1780089940973
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "firstName": "string",
+              "lastName": "string",
+              "email": "user@example.com",
+              "dob": "string",
+              "username": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/users/me"
+        name: Get current user profile
+        meta:
+          id: req_d125a6d1fc3a4d29a8d088a7dd62bf5e
+          created: 1780089940973
+          modified: 1780089940973
+          isPrivate: false
+          description: Fetch detailed profile information of the currently logged-in user.
+          sortKey: -1780089940973
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/users/:id"
+        name: Delete user account
+        meta:
+          id: req_52d36a21bd18430ca33fcf2d10397a16
+          created: 1780089940974
+          modified: 1780089940974
+          isPrivate: false
+          description: Permanently delete the user account from the database.
+          sortKey: -1780089940974
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/users/:id/password"
+        name: Update user password
+        meta:
+          id: req_5ad2b614ba824bfbaff26d5234396ad7
+          created: 1780089940975
+          modified: 1780089940975
+          isPrivate: false
+          description: Change the current password to a new one.
+          sortKey: -1780089940975
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "currentPassword": "string",
+              "newPassword": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Authentication
+    meta:
+      id: fld_5804a6449a8046b69be0b14be6bfb12d
+      created: 1780089940969
+      modified: 1780089940969
+      sortKey: -1780089940969
+      description: Operations related to user login, logout, and session status.
+    children:
+      - url: "{{ _.base_url }}/auth/login"
+        name: Authenticate user
+        meta:
+          id: req_323190ee29044e7eba6080482cbe5eae
+          created: 1780089940970
+          modified: 1780089940970
+          isPrivate: false
+          description: Log in with email and password to establish a session.
+          sortKey: -1780089940970
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "user@example.com",
+              "password": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/auth/session"
+        name: Get session status
+        meta:
+          id: req_4e5641d3722f47ab9b986935cedac39c
+          created: 1780089940971
+          modified: 1780089940971
+          isPrivate: false
+          description: Check if the request is authenticated and return basic details.
+          sortKey: -1780089940971
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/auth/logout"
+        name: Logout user
+        meta:
+          id: req_81ca24174d664a00a544caf1270414f5
+          created: 1780089940971
+          modified: 1780089940971
+          isPrivate: false
+          description: Destroy the current user session and clear cookies.
+          sortKey: -1780089940971
+        method: POST
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_f904a03cd8d8abcc4fbea906d2dc9387c0402317
+    created: 1780089941114
+    modified: 1780089941114
+environments:
+  name: Base environment
+  meta:
+    id: env_3012019e00e04620bca5214ba92a85d2
+    created: 1780089940967
+    modified: 1780089940967
+    isPrivate: false
+  data:
+    base_url: "{{ _.scheme }}://{{ _.host }}{{ _.base_path }}"
+  subEnvironments:
+    - name: OpenAPI env null
+      meta:
+        id: env_51b1713cb8934c998a86381db3d585f5
+        created: 1780089940968
+        modified: 1780089940968
+        isPrivate: false
+        sortKey: 1780089940968
+      data:
+        scheme:
+          - http
+        base_path: /api/v1
+        host: ""
+spec:
+  contents:
+    openapi: 3.0.0
+    info:
+      title: Fullstack Monorepo Template API
+      version: 1.0.0
+      description: Interactive API documentation for our Express backend REST endpoints.
+      contact:
+        name: Lee Hitchcock
+        email: lee.hitchcock2041@gmail.com
+    servers:
+      - url: /api/v1
+        description: Base API Endpoint
+    tags:
+      - name: Authentication
+        description: Operations related to user login, logout, and session status.
+      - name: Users
+        description: Operations related to user registration, profile retrieval,
+          updates, and deletion.
+    components:
+      schemas:
+        LoginCredentials:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+            password:
+              type: string
+              minLength: 8
+          required:
+            - email
+            - password
+        CreateUserInput:
+          type: object
+          properties:
+            firstName:
+              type: string
+              minLength: 1
+            lastName:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              format: email
+            dob:
+              type: string
+              pattern: ^\d{4}-\d{2}-\d{2}$
+            username:
+              type: string
+              minLength: 1
+            password:
+              type: string
+              minLength: 8
+          required:
+            - firstName
+            - lastName
+            - email
+            - dob
+            - username
+            - password
+        UpdateUserInput:
+          type: object
+          properties:
+            firstName:
+              type: string
+              minLength: 1
+            lastName:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              format: email
+            dob:
+              type: string
+              pattern: ^\d{4}-\d{2}-\d{2}$
+            username:
+              type: string
+              minLength: 1
+        UpdateUserPasswordInput:
+          type: object
+          properties:
+            currentPassword:
+              type: string
+              minLength: 8
+            newPassword:
+              type: string
+              minLength: 8
+          required:
+            - currentPassword
+            - newPassword
+        User:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            email:
+              type: string
+            password:
+              type: string
+            username:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            dob:
+              type: string
+              nullable: true
+              format: date-time
+            createdAt:
+              type: string
+              nullable: true
+              format: date-time
+            updatedAt:
+              type: string
+              nullable: true
+              format: date-time
+          required:
+            - id
+            - email
+            - password
+            - username
+            - firstName
+            - lastName
+            - dob
+            - createdAt
+            - updatedAt
+        ErrorResponse:
+          type: object
+          properties:
+            status:
+              type: number
+            message:
+              type: string
+          required:
+            - status
+            - message
+    paths:
+      /auth/login:
+        post:
+          operationId: login
+          summary: Authenticate user
+          description: Log in with email and password to establish a session.
+          tags:
+            - Authentication
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/LoginCredentials"
+          responses:
+            "200":
+              description: Login successful
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                      userId:
+                        type: string
+                        format: uuid
+                    required:
+                      - status
+                      - message
+                      - userId
+            "401":
+              description: Invalid credentials
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "404":
+              description: User not found
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+      /auth/logout:
+        post:
+          operationId: logout
+          summary: Logout user
+          description: Destroy the current user session and clear cookies.
+          tags:
+            - Authentication
+          responses:
+            "200":
+              description: Logout successful
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                    required:
+                      - status
+                      - message
+            "500":
+              description: Internal server error during session cleanup
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+      /auth/session:
+        get:
+          operationId: getCurrentSession
+          summary: Get session status
+          description: Check if the request is authenticated and return basic details.
+          tags:
+            - Authentication
+          responses:
+            "200":
+              description: Session status retrieved
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      authenticated:
+                        type: boolean
+                    required:
+                      - authenticated
+      /users:
+        post:
+          operationId: registerUser
+          summary: Create user account
+          description: Register a new user account with email and username.
+          tags:
+            - Users
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/CreateUserInput"
+          responses:
+            "200":
+              description: User created successfully
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                      data:
+                        $ref: "#/components/schemas/User"
+                    required:
+                      - status
+                      - message
+                      - data
+            "400":
+              description: Validation failed
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "409":
+              description: User already exists
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+      /users/me:
+        get:
+          operationId: getCurrentUser
+          summary: Get current user profile
+          description: Fetch detailed profile information of the currently logged-in user.
+          tags:
+            - Users
+          responses:
+            "200":
+              description: User profile retrieved successfully
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                      user:
+                        $ref: "#/components/schemas/User"
+                    required:
+                      - status
+                      - message
+                      - user
+            "401":
+              description: Unauthorized
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+      /users/{id}:
+        put:
+          operationId: updateUser
+          summary: Update user profile
+          description: Update the user profile information such as username and email.
+          tags:
+            - Users
+          parameters:
+            - schema:
+                type: string
+                format: uuid
+              required: true
+              name: id
+              in: path
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/UpdateUserInput"
+          responses:
+            "200":
+              description: User updated successfully
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                      data:
+                        $ref: "#/components/schemas/User"
+                    required:
+                      - status
+                      - message
+                      - data
+            "400":
+              description: Validation failed
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "401":
+              description: Unauthorized
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "403":
+              description: Forbidden - can only update own profile
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+        delete:
+          operationId: deleteUser
+          summary: Delete user account
+          description: Permanently delete the user account from the database.
+          tags:
+            - Users
+          parameters:
+            - schema:
+                type: string
+                format: uuid
+              required: true
+              name: id
+              in: path
+          responses:
+            "200":
+              description: User deleted successfully
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                    required:
+                      - status
+                      - message
+            "401":
+              description: Unauthorized
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "403":
+              description: Forbidden - can only delete own profile
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+      /users/{id}/password:
+        patch:
+          operationId: updateUserPassword
+          summary: Update user password
+          description: Change the current password to a new one.
+          tags:
+            - Users
+          parameters:
+            - schema:
+                type: string
+                format: uuid
+              required: true
+              name: id
+              in: path
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/UpdateUserPasswordInput"
+          responses:
+            "200":
+              description: User updated successfully
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 200
+                      message:
+                        type: string
+                    required:
+                      - status
+                      - message
+            "400":
+              description: Validation failed
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "401":
+              description: Incorrect current password
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+            "403":
+              description: Forbidden - can only update own password
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ErrorResponse"
+  meta:
+    id: spc_b690d8db2ad94810bff641a39a450c0b
+    created: 1780089940965
+    modified: 1780089940966
