@@ -1,12 +1,12 @@
 import { execSync } from 'node:child_process'
 import pg from 'pg'
 
-const TEST_DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/testdb'
+const TEST_DATABASE_URL = 'postgresql://postgres:postgres@127.0.0.1:5432/testdb'
 
 export async function setup() {
 	const client = new pg.Client({
 		connectionString:
-			'postgresql://postgres:postgres@localhost:5432/postgres',
+			'postgresql://postgres:postgres@127.0.0.1:5432/postgres',
 	})
 
 	await client.connect()
