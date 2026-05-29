@@ -7,7 +7,7 @@ export default mergeConfig(integrationConfig, {
 		setupFiles: ['./src/test/integration-setup.ts'],
 		env: {
 			DATABASE_URL:
-				'postgresql://postgres:postgres@localhost:5432/testdb',
+				'postgresql://postgres:postgres@127.0.0.1:5432/testdb',
 			// SESSION_SECRET is required to be at least 32 characters long by src/env.ts.
 			// This fallback ensures Zod validation passes in CI environments where a local .env file does not exist.
 			SESSION_SECRET:
