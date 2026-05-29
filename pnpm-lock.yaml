@@ -146,6 +146,9 @@ importers:
       vitest:
         specifier: ^4.0.16
         version: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.0.16)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
+      zod-prisma-types:
+        specifier: ^3.3.11
+        version: 3.3.11(@prisma/client@7.2.0(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(zod@4.3.6)
 
   apps/design-system:
     devDependencies:
@@ -411,6 +414,9 @@ importers:
 
   packages/schemas:
     dependencies:
+      "@prisma/client":
+        specifier: ^7.2.0
+        version: 7.2.0(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3)
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -1536,6 +1542,12 @@ packages:
         integrity: sha512-dn7oB53v0tqkB0wBdMuTNFNPdEbfICEUe82Tn9FoKAhJCUkDH+fmyEp0ClciGh+9Hp2Tuu2K52kth2MTLstvmA==,
       }
 
+  "@prisma/client-runtime-utils@7.8.0":
+    resolution:
+      {
+        integrity: sha512-5NQZztQ0oY/ADFkmd9gPuweH5A1/CCY8YQPorLLO0Mu6a87mY5gsnDkzmFmIHs9NFaLnZojzgddFVN4RpKYrdw==,
+      }
+
   "@prisma/client@7.2.0":
     resolution:
       {
@@ -1569,10 +1581,22 @@ packages:
         integrity: sha512-YSGTiSlBAVJPzX4ONZmMotL+ozJwQjRmZweQNIq/ER0tQJKJynNkRB3kyvt37eOfsbMCXk3gnLF6J9OJ4QWftw==,
       }
 
+  "@prisma/debug@7.8.0":
+    resolution:
+      {
+        integrity: sha512-p+QZReysDUqXC+mk17q9a+Y/qzh4c2KYliDK30buYUyfrGeTGSyfmc0AIrJRhZJrLHhRiJa9Au/J72h3C+szvA==,
+      }
+
   "@prisma/dev@0.17.0":
     resolution:
       {
         integrity: sha512-6sGebe5jxX+FEsQTpjHLzvOGPn6ypFQprcs3jcuIWv1Xp/5v6P/rjfdvAwTkP2iF6pDx2tCd8vGLNWcsWzImTA==,
+      }
+
+  "@prisma/dmmf@7.8.0":
+    resolution:
+      {
+        integrity: sha512-7xzcSFWO6J+dFUgIX7jL7QqUhEDfaa8GSZGsjjHyZct1Su+6KrvMl3S2+fnRkuKUIoTPg3Mj02oZuUdaNSfsaw==,
       }
 
   "@prisma/driver-adapter-utils@7.2.0":
@@ -1597,6 +1621,18 @@ packages:
     resolution:
       {
         integrity: sha512-Z5XZztJ8Ap+wovpjPD2lQKnB8nWFGNouCrglaNFjxIWAGWz0oeHXwUJRiclIoSSXN/ptcs9/behptSk8d0Yy6w==,
+      }
+
+  "@prisma/generator-helper@7.8.0":
+    resolution:
+      {
+        integrity: sha512-i+2Gad6D/0dS0YHKFdYX3M8KYN1gwNkET813WXKfW2HeWmgipmSJsNSzOA44kTM+Rx6Dev3yBQwx5sZXXdtgtQ==,
+      }
+
+  "@prisma/generator@7.8.0":
+    resolution:
+      {
+        integrity: sha512-KHGB0b8/9pNWyiK9EPJNE2/v1bMtqJgJldqjNNVvoE4uOhNSSWTmhHhPVfRsiuOVybzHCdCUQ/gdidCbpYAD5w==,
       }
 
   "@prisma/get-platform@6.8.2":
@@ -4272,6 +4308,12 @@ packages:
       }
     engines: { node: ">=6" }
 
+  code-block-writer@13.0.3:
+    resolution:
+      {
+        integrity: sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==,
+      }
+
   color-convert@2.0.1:
     resolution:
       {
@@ -6213,6 +6255,12 @@ packages:
     resolution:
       {
         integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
+      }
+
+  lodash@4.18.1:
+    resolution:
+      {
+        integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==,
       }
 
   log-update@6.1.0:
@@ -8465,6 +8513,17 @@ packages:
         integrity: sha512-H33jtSKf8Ijtb5BW6wua3G5DhnFjbFML36eFu+VdOoVY4HD9e7ggjqdM6639B+L87rjnR6Y+XeRzBXZdy52B/g==,
       }
 
+  zod-prisma-types@3.3.11:
+    resolution:
+      {
+        integrity: sha512-fP00cL+MLPhG3GDNep3cro5iXWTaFUcOqWoGfNGFFmaIxHjKoViXGKpZGwFg8RdXZdng1i1/EIh/Pv5kGQeKNA==,
+      }
+    hasBin: true
+    peerDependencies:
+      "@prisma/client": ^4.x.x || ^5.x.x || ^6.x.x || ^7.x.x
+      prisma: ^4.x.x || ^5.x.x || ^6.x.x || ^7.x.x
+      zod: ^3.25.0 || ^4.0.0
+
   zod-validation-error@4.0.2:
     resolution:
       {
@@ -9010,6 +9069,8 @@ snapshots:
 
   "@prisma/client-runtime-utils@7.2.0": {}
 
+  "@prisma/client-runtime-utils@7.8.0": {}
+
   "@prisma/client@7.2.0(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3)":
     dependencies:
       "@prisma/client-runtime-utils": 7.2.0
@@ -9029,6 +9090,8 @@ snapshots:
   "@prisma/debug@6.8.2": {}
 
   "@prisma/debug@7.2.0": {}
+
+  "@prisma/debug@7.8.0": {}
 
   "@prisma/dev@0.17.0(typescript@5.9.3)":
     dependencies:
@@ -9052,6 +9115,8 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  "@prisma/dmmf@7.8.0": {}
+
   "@prisma/driver-adapter-utils@7.2.0":
     dependencies:
       "@prisma/debug": 7.2.0
@@ -9070,6 +9135,14 @@ snapshots:
       "@prisma/debug": 7.2.0
       "@prisma/engines-version": 7.2.0-4.0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
       "@prisma/get-platform": 7.2.0
+
+  "@prisma/generator-helper@7.8.0":
+    dependencies:
+      "@prisma/debug": 7.8.0
+      "@prisma/dmmf": 7.8.0
+      "@prisma/generator": 7.8.0
+
+  "@prisma/generator@7.8.0": {}
 
   "@prisma/get-platform@6.8.2":
     dependencies:
@@ -10618,7 +10691,7 @@ snapshots:
       "@vitest/mocker": 4.0.16(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3))
       playwright: 1.57.0
       tinyrainbow: 3.1.0
-      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.1.5)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
+      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.0.16)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -10652,7 +10725,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.1.5)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
+      vitest: 4.0.16(@types/node@25.0.3)(@vitest/browser-playwright@4.0.16)(@vitest/ui@4.0.16)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.3)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -11097,6 +11170,8 @@ snapshots:
       string-width: 8.2.0
 
   clsx@2.1.1: {}
+
+  code-block-writer@13.0.3: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -12325,6 +12400,8 @@ snapshots:
   lodash.once@4.1.1: {}
 
   lodash@4.17.21: {}
+
+  lodash@4.18.1: {}
 
   log-update@6.1.0:
     dependencies:
@@ -13797,6 +13874,17 @@ snapshots:
   zeptomatch@2.0.2:
     dependencies:
       grammex: 3.1.12
+
+  zod-prisma-types@3.3.11(@prisma/client@7.2.0(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(zod@4.3.6):
+    dependencies:
+      "@prisma/client": 7.2.0(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3)
+      "@prisma/client-runtime-utils": 7.8.0
+      "@prisma/dmmf": 7.8.0
+      "@prisma/generator-helper": 7.8.0
+      code-block-writer: 13.0.3
+      lodash: 4.18.1
+      prisma: 7.2.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+      zod: 4.3.6
 
   zod-validation-error@4.0.2(zod@4.3.6):
     dependencies:
