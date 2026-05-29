@@ -18,40 +18,38 @@ pnpm openapi:generate
 
 ---
 
-## 2. Import into Insomnia
+## 2. Configure Git Sync (Project Level)
 
-To load the OpenAPI spec as a structured, interactive Design Document in Insomnia:
+In modern Kong Insomnia (v8+ / v9+ / v10+), Git Sync is set up at the **Project level** in the dashboard, rather than per individual workspace or collection.
 
-1. Open **Insomnia**.
-2. Click on the **Create** or **+** button in your dashboard.
-3. Select **Import** -> **From File**.
-4. Browse and select the `apps/api/openapi-spec.json` file in your local workspace.
-5. Choose **Design Document** or **Request Collection** as the import target:
-   - _Recommended_: Select **Design Document**. This parses the OpenAPI file, mounts it inside the Insomnia editor, and automatically populates the **Debug** tab with pre-configured requests for every endpoint (Auth and Users).
+### Step A: Link your Git Repository to an Insomnia Project
+
+1. Open **Insomnia** to the main dashboard.
+2. Click your current project name in the top-left corner and select **Project Settings** (or click **Create** -> **Project** to create a new dedicated project).
+3. In the settings pane, locate the **Type** dropdown and select **Git Sync**.
+4. Fill out the Git Repository configurations:
+   - **Repository URI**: Paste the SSH or HTTPS URL of your remote Git repository (e.g. `git@github.com:preacher2041/ts-fullstack-monorepo-template.git`).
+   - **Auth Credentials**: Paste your GitHub Personal Access Token (PAT) with `repo` scope. (Alternatively, you can manage this globally in Insomnia via **Preferences > Credentials**).
+5. Click **Update** or **Save**.
 
 ---
 
-## 3. Configure Git Sync
+## 3. Import the OpenAPI Spec
 
-Git Sync allows Insomnia to store your workspace metadata, collections, and environments directly inside this repository as YAML files, making them easily shareable and version-controlled.
+Once your Project is configured to sync with Git, any documents or collections created inside it are automatically synced to the repository.
 
-### Step A: Initialize Git Sync in Insomnia
+1. Ensure you are inside your newly linked **Git Sync Project** in the Insomnia dashboard.
+2. Click **Create** or **+** and select **Import** -> **From File**.
+3. Browse and select the `apps/api/openapi-spec.json` file in your local monorepo directory.
+4. Choose **Design Document** as the import target:
+   - _Recommended_: **Design Document**. This mounts the OpenAPI spec in the Insomnia editor, automatically generating interactive request templates for all endpoints (Auth and Users) under the **Debug** tab.
 
-1. Open your imported Design Document workspace in Insomnia.
-2. In the top-right corner of the interface, click on **Setup Git Sync**.
-3. Fill out the Git Repository configurations:
-   - **Git URI**: Paste the SSH or HTTPS URL of your remote Git repository (e.g. `git@github.com:preacher2041/ts-fullstack-monorepo-template.git`).
-   - **Author Name**: Your name (e.g. `Lee Hitchcock`).
-   - **Author Email**: Your email (e.g. `lee.hitchcock2041@gmail.com`).
-   - **Auth Token / Password**: Paste your GitHub Personal Access Token (PAT) with `repo` scope.
-4. Click **Link Repository**.
+### Step B: Syncing and Version Control
 
-### Step B: Branching & Synchronizing
-
-1. Select your active working branch (e.g., `leehitchcock2041/p2041-44-set-up-orval...` or `main`).
-2. Click the **Sync** button in the Git Sync panel.
-3. Insomnia will serialize your environment configurations and collections, saving them to the repository's git index.
-4. You can now use the Insomnia UI to **Commit**, **Push**, and **Pull** API collection updates directly to/from the Git remote!
+1. Open your imported Design Document.
+2. Look for the Git branch selector in the top menu or side panel and select your active working branch (e.g., `leehitchcock2041/p2041-46-...` or `main`).
+3. Click the **Sync** button. Insomnia will serialize your collection metadata and environments, saving them directly into your local Git repository folder.
+4. You can now use the Insomnia UI to **Commit**, **Push**, and **Pull** API changes alongside your source code!
 
 ---
 
