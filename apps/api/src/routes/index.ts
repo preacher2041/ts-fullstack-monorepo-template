@@ -4,6 +4,7 @@ import createError, { isHttpError } from 'http-errors'
 import auth from './auth'
 import users from './users'
 import { mapPrismaError } from '../lib/prismaError'
+import { sanitizeError } from '../lib/sanitize'
 
 const router: Router = Router()
 
@@ -19,7 +20,7 @@ router.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
 	const resolved = mapped ?? (isHttpError(err) ? err : createError(500))
 
 	if (resolved.status >= 500) {
-		console.error(`[${req.method} ${req.path}]`, err)
+		console.error(`[${req.method} ${req.path}]`, sanitizeError(err))
 	}
 
 	res.status(resolved.status).json({
