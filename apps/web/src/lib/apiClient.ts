@@ -20,6 +20,35 @@ export const apiClient = async <T>(
 		throw new Error('Unauthorized')
 	}
 
-	if (!res.ok) throw await res.json()
+	if (!res.ok) {
+		const contentType = res.headers.get('content-type')?.toLowerCase()
+		let isJson = false
+		let jsonError: unknown
+
+		if (contentType?.includes('application/json')) {
+			try {
+				jsonError = await res.json()
+				isJson = true
+			} catch {
+				// Fallback if JSON parsing fails
+			}
+		}
+
+		if (isJson) {
+			throw jsonError
+		}
+
+		let text = ''
+		try {
+			text = await res.text()
+		} catch {
+			// Fallback if reading text fails
+		}
+
+		throw {
+			status: res.status,
+			message: text || res.statusText || 'An error occurred',
+		}
+	}
 	return res.json()
 }
