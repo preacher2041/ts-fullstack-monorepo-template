@@ -16,6 +16,7 @@
     "prepare": "husky",
     "setup": "node scripts/setup.mjs",
     "test": "pnpm -r test:run",
+    "generate": "pnpm --filter @template/api generate && pnpm --filter @template/api generate-spec && pnpm --filter @template/web openapi:generate",
     "openapi:generate": "pnpm --filter @template/api generate-spec && pnpm --filter @template/web openapi:generate",
     "test:e2e": "pnpm --filter @template/e2e test:e2e"
   },

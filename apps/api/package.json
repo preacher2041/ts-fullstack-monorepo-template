@@ -10,6 +10,7 @@
 		"typecheck": "tsc --noEmit",
 		"start": "node dist/src/index.js",
 		"generate-spec": "tsx src/scripts/generate-openapi.ts",
+		"generate": "NODE_OPTIONS=\"--require ./src/scripts/prisma-patch.js\" prisma generate",
 		"migrate": "prisma migrate dev && prisma generate",
 		"migrate:deploy": "prisma migrate deploy",
 		"studio": "prisma studio --browser none --port 5555",
