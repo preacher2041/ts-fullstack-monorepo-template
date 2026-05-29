@@ -5,8 +5,10 @@ import rateLimit from 'express-rate-limit'
 import session from 'express-session'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import swaggerUi from 'swagger-ui-express'
 
 import { env } from './env'
+import { openApiSpec } from './openapi'
 import router from './routes'
 
 declare module 'express-session' {
@@ -60,6 +62,9 @@ const authLimiter = rateLimit({
 })
 
 app.use(globalLimiter)
+
+// Mount interactive Swagger API docs
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiSpec))
 
 //redirect to routes/index.js
 app.use('/api/v1', router)
