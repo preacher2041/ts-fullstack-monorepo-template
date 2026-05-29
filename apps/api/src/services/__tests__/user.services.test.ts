@@ -9,8 +9,6 @@ import {
 	deleteUser,
 } from '../users.services'
 import prisma from '../../lib/db'
-import { mock } from 'node:test'
-import { email } from 'zod'
 
 vi.mock('../../lib/db', () => ({
 	default: {
