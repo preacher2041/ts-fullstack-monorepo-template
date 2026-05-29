@@ -1,4 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
+import {
+	CreateUserInput,
+	UpdateUserInput,
+	UpdateUserPasswordInput,
+} from '@template/schemas'
 
 import {
 	createUser,
@@ -14,7 +19,8 @@ export const createUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		const user = await createUser(req.body)
+		const body = req.body as CreateUserInput
+		const user = await createUser(body)
 		await new Promise<void>((resolve, reject) =>
 			req.session.regenerate((err) => (err ? reject(err) : resolve()))
 		)
@@ -69,11 +75,8 @@ export const updateUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		const user = await updateUser(
-			req.params.id,
-			req.session.user!.id,
-			req.body
-		)
+		const body = req.body as UpdateUserInput
+		const user = await updateUser(req.params.id, req.session.user!.id, body)
 		res.status(200).json({
 			status: 200,
 			message: 'User updated successfully',
@@ -90,11 +93,12 @@ export const updateUserPasswordController = async (
 	next: NextFunction
 ) => {
 	try {
+		const body = req.body as UpdateUserPasswordInput
 		const user = await updateUserPassword(
 			req.params.id,
 			req.session.user!.id,
-			req.body.currentPassword,
-			req.body.newPassword
+			body.currentPassword,
+			body.newPassword
 		)
 		res.status(200).json({
 			status: 200,
