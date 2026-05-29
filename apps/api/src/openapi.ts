@@ -333,11 +333,27 @@ export const openApiSpec: Record<string, any> = generator.generateDocument({
 		version: '1.0.0',
 		description:
 			'Interactive API documentation for our Express backend REST endpoints.',
+		contact: {
+			name: 'Lee Hitchcock',
+			email: 'lee.hitchcock2041@gmail.com',
+		},
 	},
 	servers: [
 		{
 			url: '/api/v1',
 			description: 'Base API Endpoint',
+		},
+	],
+	tags: [
+		{
+			name: 'Authentication',
+			description:
+				'Operations related to user login, logout, and session status.',
+		},
+		{
+			name: 'Users',
+			description:
+				'Operations related to user registration, profile retrieval, updates, and deletion.',
 		},
 	],
 })
