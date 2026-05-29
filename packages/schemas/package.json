@@ -1,16 +1,17 @@
 {
-	"name": "@template/schemas",
-	"version": "1.0.0",
-	"description": "Shared Zod schemas and Typescript types",
-	"main": "./src/index.ts",
-	"exports": {
-		".": "./src/index.ts"
-	},
-	"dependencies": {
-		"zod": "^4.3.6"
-	},
-	"devDependencies": {
-		"@template/typescript-config": "workspace:*",
-		"typescript": "^5.9.3"
-	}
+  "name": "@template/schemas",
+  "version": "1.0.0",
+  "description": "Shared Zod schemas and Typescript types",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.2.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@template/typescript-config": "workspace:*",
+    "typescript": "^5.9.3"
+  }
 }

@@ -58,6 +58,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build shared packages
         run: pnpm --filter @template/vitest-config build
+      - name: Generate Prisma Client
+        run: pnpm --filter api exec prisma generate
       - name: Run typecheck
         run: pnpm --filter web typecheck
       - name: Run web tests
@@ -78,6 +80,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build shared packages
         run: pnpm --filter @template/vitest-config build
+      - name: Generate Prisma Client
+        run: pnpm --filter api exec prisma generate
       - name: Run typecheck
         run: pnpm --filter design-system typecheck
       - name: Run design system tests
