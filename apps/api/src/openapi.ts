@@ -1,3 +1,4 @@
+import './extend-zod'
 import { z } from 'zod'
 import {
 	extendZodWithOpenApi,
@@ -41,6 +42,7 @@ const ErrorResponse = registry.register(
 registry.registerPath({
 	method: 'post',
 	path: '/auth/login',
+	operationId: 'login',
 	summary: 'Authenticate user',
 	description: 'Log in with email and password to establish a session.',
 	tags: ['Authentication'],
@@ -79,6 +81,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'post',
 	path: '/auth/logout',
+	operationId: 'logout',
 	summary: 'Logout user',
 	description: 'Destroy the current user session and clear cookies.',
 	tags: ['Authentication'],
@@ -105,6 +108,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'get',
 	path: '/auth/session',
+	operationId: 'getCurrentSession',
 	summary: 'Get session status',
 	description:
 		'Check if the request is authenticated and return basic details.',
@@ -127,6 +131,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'post',
 	path: '/users',
+	operationId: 'registerUser',
 	summary: 'Create user account',
 	description: 'Register a new user account with email and username.',
 	tags: ['Users'],
@@ -165,6 +170,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'get',
 	path: '/users/me',
+	operationId: 'getCurrentUser',
 	summary: 'Get current user profile',
 	description:
 		'Fetch detailed profile information of the currently logged-in user.',
@@ -193,6 +199,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'put',
 	path: '/users/{id}',
+	operationId: 'updateUser',
 	summary: 'Update user profile',
 	description:
 		'Update the user profile information such as username and email.',
@@ -239,6 +246,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'patch',
 	path: '/users/{id}/password',
+	operationId: 'updateUserPassword',
 	summary: 'Update user password',
 	description: 'Change the current password to a new one.',
 	tags: ['Users'],
@@ -283,6 +291,7 @@ registry.registerPath({
 registry.registerPath({
 	method: 'delete',
 	path: '/users/{id}',
+	operationId: 'deleteUser',
 	summary: 'Delete user account',
 	description: 'Permanently delete the user account from the database.',
 	tags: ['Users'],
