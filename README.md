@@ -6,16 +6,16 @@ A batteries-included monorepo template for fullstack TypeScript projects. Clone 
 
 | Layer           | Technology                                                                                    |
 | --------------- | --------------------------------------------------------------------------------------------- |
-| API             | Express 5, Prisma 7 (PostgreSQL), session auth                                                |
-| Web             | React 19, Vite, TanStack Router, Tailwind CSS v4                                              |
+| API             | Express 5, Prisma 7 (PostgreSQL), session auth, Zod-to-OpenAPI validation, Swagger UI         |
+| Web             | React 19, Vite, TanStack Router, TanStack Query (React Query), Orval API clients, Tailwind v4 |
 | Design system   | Storybook 10                                                                                  |
 | Shared packages | UI library, ESLint config, Prettier config, Tailwind config, TypeScript config, Vitest config |
 | Infrastructure  | Docker Compose (dev + prod), multi-stage Dockerfiles                                          |
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org) ≥ 20
-- [pnpm](https://pnpm.io) ≥ 9
+- [Node.js](https://nodejs.org) ≥ 20 (enforced via `.nvmrc`)
+- [pnpm](https://pnpm.io) ≥ 10 (enforced in `package.json`)
 - [Docker](https://docker.com) with Compose
 
 ## Getting started
@@ -66,6 +66,8 @@ docker compose up api-dev web-dev
 | ------------- | ----------------------------------------------------------------- |
 | Web app       | http://localhost:9000                                             |
 | API           | http://localhost:3001                                             |
+| API Docs      | http://localhost:3001/docs (Interactive Swagger UI)               |
+| OpenAPI Spec  | http://localhost:3001/openapi.json (Raw OpenAPI 3.0 spec)         |
 | Storybook     | http://localhost:6006 (run `docker compose up design-system-dev`) |
 | Prisma Studio | http://localhost:5555 (run `docker compose up prisma-studio`)     |
 
@@ -127,6 +129,46 @@ docker compose up web          # Web app at http://localhost:8080
 docker compose up design-system # Storybook at http://localhost:8081
 docker compose up api          # API at http://localhost:3000
 ```
+
+## Code Generation Pipeline
+
+We have established a fully automated end-to-end type safety and code-generation pipeline that connects our database, backend validations, OpenAPI schema, and frontend client hooks.
+
+```mermaid
+graph TD
+    Prisma[Prisma Schema] -->|zod-prisma-types| ZodPrisma[Auto-Generated Zod Schemas]
+    ZodPrisma -->|Zod-to-OpenAPI| API[Express API Schemas]
+    API -->|Spec Generation| Spec[openapi-spec.json]
+    Spec -->|Orval Code Gen| Hooks[Typed React Query Hooks & Axios Client]
+```
+
+### Running the pipeline
+
+When you modify the database schema or your API validation schemas, you can regenerate the entire stack (schemas, spec, and frontend clients) with a single command from the monorepo root:
+
+```bash
+pnpm generate
+```
+
+- **Backend spec only**: To compile the OpenAPI spec without rebuilding database clients, run `pnpm openapi:generate`.
+- **Prisma types**: Database schemas are auto-generated under `@template/schemas` to enable compile-time type-safety across packages.
+
+---
+
+## API Client & Design Document Sync (Insomnia)
+
+To make testing and debugging endpoints extremely easy, our complete API design document is checked into version control inside this repository.
+
+- **Setup Native Git Sync**: We use native Insomnia Project-level Git Sync to track request collections, query schemas, and environment variables.
+- **Instructions**: For a step-by-step walkthrough on how to set up your credentials, import the OpenAPI spec, and push/pull requests, refer to [Insomnia Integration & Git Sync Guide](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/insomnia-setup.md).
+
+---
+
+## Startup Environment Validation
+
+The API service validates all required environment variables at boot time using a strict Zod schema. If any required variables (e.g. `DATABASE_URL`, `JWT_SECRET`, or `SESSION_SECRET`) are missing or incorrectly formatted, the API server will fail-fast with a descriptive validation error at startup.
+
+---
 
 ## GitHub template
 
