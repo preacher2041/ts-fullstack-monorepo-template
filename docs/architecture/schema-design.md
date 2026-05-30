@@ -63,6 +63,9 @@ Prisma generates TypeScript types from this schema. The `PrismaClient` is expose
 
 ---
 
-## OpenAPI / Swagger (not yet implemented)
+## OpenAPI / Swagger (Fully Integrated)
 
-`swagger-jsdoc` and `swagger-ui-express` are installed but not wired up anywhere in the Express app. The intended approach for generating the OpenAPI spec has not been decided.
+We have fully implemented OpenAPI 3.0 specification generation using **Zod-to-OpenAPI** (`@asteasolutions/zod-to-openapi`).
+
+- **Specification**: Validated request and response Zod schemas are automatically compiled and served as a raw JSON spec at `/openapi.json` and generated as a static file at `apps/api/openapi-spec.json`.
+- **Interactive Documentation**: Interactive API documentation is served at `/docs` using **Swagger UI** (`swagger-ui-express`). This allows developers to test authenticated and public endpoints interactively in the browser.

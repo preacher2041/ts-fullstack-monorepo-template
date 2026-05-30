@@ -217,8 +217,8 @@ It does not validate the session ID or compare it against the stored session dat
 
 ```
 cors({ credentials: true, origin: CORS_ORIGIN })
-bodyParser.urlencoded({ extended: true })
-bodyParser.json()
+express.urlencoded({ extended: true })
+express.json()
 cookieParser()
 morgan('tiny')
 session({ name: 'MySessionID', ... })
@@ -242,5 +242,4 @@ Errors originating from services are typically `http-errors` instances (e.g. `cr
 ## Installed but unused dependencies
 
 - `jsonwebtoken` — installed; not imported anywhere. The template uses sessions, not JWTs.
-- `swagger-jsdoc` and `swagger-ui-express` — installed; not mounted in the Express app.
 - `uuid` — installed; Prisma generates UUIDs at the database level via `@default(uuid())`, so this package is not used directly.

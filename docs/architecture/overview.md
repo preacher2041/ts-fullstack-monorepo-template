@@ -53,8 +53,5 @@ The monorepo is managed by pnpm workspaces. All packages reference each other us
 
 The template leaves a number of things as exercises for the builder:
 
-- The login form (`LoginForm.tsx`) is a stub — it renders a placeholder `<div>`.
-- The auth API client (`features/Auth/api/authApi.ts`) is empty — no `fetch` calls exist yet.
-- TanStack Query hooks have no queries defined; the `QueryClient` is configured and passed through the router context, ready to use.
-- `swagger-jsdoc` and `swagger-ui-express` are installed as dependencies but are not mounted in the Express app.
-- `jsonwebtoken` is installed but the auth strategy is session-based — JWT is not used.
+- The login form (`LoginForm.tsx`) is currently being integrated with the generated API client hooks.
+- `jsonwebtoken` is installed but the auth strategy remains session-based — JWT is not used in the default configuration.
