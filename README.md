@@ -103,6 +103,19 @@ docker compose up api-dev web-dev
 └── docker-compose.yml
 ```
 
+## Documentation
+
+Detailed architectural and design specifications can be found under the `docs/` folder:
+
+- 🏗️ **[Architecture Overview](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/overview.md)** — Core layers, styling systems, and workspace orchestration.
+- 🌐 **[API Design](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/api-design.md)** — Routes, request-response envelopes, error handling, and session middleware.
+- 🗄️ **[Schema & Validation Design](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/schema-design.md)** — Prisma database modeling and Zod-to-OpenAPI schema integrations.
+- 💻 **[Frontend Architecture](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/frontend-architecture.md)** — Vite, TanStack Router file routing, and Orval generated Query hooks.
+- 📂 **[Folder Structure Reference](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/folder-structure.md)** — Absolute directory hierarchy breakdown.
+- 🔄 **[Data Flow](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/data-flow.md)** — Request lifecycle from the client to database.
+- ⚖️ **[Architectural Decisions](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/architecture/decisions.md)** — Key technical trade-offs and structural choices.
+- 🤖 **[Insomnia Setup Guide](file:///Users/lee-work/ts-fullstack-monorepo-template/docs/insomnia-setup.md)** — Step-by-step native Git Sync setup.
+
 ## Adding new API routes
 
 1. Create `apps/api/src/routes/your-resource.ts`
